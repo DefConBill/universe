@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Halifax Hot Tubs & Swim Spas | Hot Tub Universe — Bedford NS',
+  description = "Hot Tub Universe is Halifax's locally owned, full-service hot tub and swim spa dealer. Visit our Bedford showroom to explore Master Spas and Getaway Hot Tubs. 40+ years combined expertise, serving HRM.",
+  canonical = Astro.url.href,
+  ogImage = '/images/hero.jpg',
+} = Astro.props;
+
+// LocalBusiness JSON-LD — appears on every page for local SEO
+const businessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HotTubStore',
+  name: 'Hot Tub Universe',
+  url: 'https://hottubuniverse.ca',
+  telephone: '+1-902-576-5115',
+  image: 'https://hottubuniverse.ca/images/logo-black.png',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '20 Duke Street, Unit 109',
+    addressLocality: 'Bedford',
+    addressRegion: 'NS',
+    postalCode: 'B4A 2Z5',
+    addressCountry: 'CA',
+  },
+  areaServed: ['Halifax', 'Bedford', 'Dartmouth', 'Sackville', 'Lower Sackville', 'Cole Harbour', 'Eastern Passage', 'HRM'],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '10:00',
+    closes: '17:00',
+  },
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+  <meta property="og:locale" content="en_CA" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/logo-black.png" />
+
+  <!-- LocalBusiness schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(businessJsonLd)} />
+
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

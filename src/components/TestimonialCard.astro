@@ -1,0 +1,27 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  meta: string;
+  initials: string;
+  rating?: number;
+}
+
+const { quote, name, meta, initials, rating = 5 } = Astro.props;
+const stars = Array(rating).fill(0);
+---
+<div class="testimonial-card">
+  <div class="stars">
+    {stars.map(() => (
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    ))}
+  </div>
+  <blockquote>{quote}</blockquote>
+  <div class="testimonial-author">
+    <div class="testimonial-avatar">{initials}</div>
+    <div>
+      <div class="testimonial-name">{name}</div>
+      <div class="testimonial-meta">{meta}</div>
+    </div>
+  </div>
+</div>
