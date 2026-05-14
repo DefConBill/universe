@@ -625,6 +625,64 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
 /* ---------- Visit grid layout fix on series page ---------- */
 .visit-section .visit-address { margin-bottom: 0; }
 
+/* ---------- Hub hero (used on /hot-tubs/) ---------- */
+.hub-hero {
+  background: var(--ink-1);
+  padding: 80px 0 96px;
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+}
+.hub-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 700px 360px at 50% -10%, rgba(237,128,0,0.14), transparent 70%),
+    radial-gradient(ellipse 500px 280px at 50% 110%, rgba(49,149,250,0.08), transparent 70%);
+  z-index: -1;
+}
+.hub-hero-inner { max-width: 760px; margin: 0 auto; }
+.hub-hero h1 {
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.hub-hero-sub {
+  font-size: 19px;
+  color: var(--on-dark-body);
+  margin-bottom: 32px;
+}
+
+/* ---------- Chooser grid (used on hub page) ---------- */
+.chooser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.chooser-card {
+  background: var(--ink-3);
+  border: 1px solid var(--on-dark-border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color 0.2s ease;
+}
+.chooser-card:hover { border-color: var(--orange); }
+.chooser-icon {
+  width: 44px; height: 44px;
+  background: rgba(237,128,0,0.12);
+  border: 1px solid rgba(237,128,0,0.25);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.chooser-icon svg { width: 22px; height: 22px; }
+.chooser-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--on-dark-strong); }
+.chooser-card p { font-size: 14px; color: var(--on-dark-body); line-height: 1.6; }
+.chooser-card a { color: var(--orange); font-weight: 600; }
+.chooser-card a:hover { text-decoration: underline; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
   nav.main-nav { display: none; }
@@ -645,6 +703,7 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
   .series-hero-inner { grid-template-columns: 1fr; gap: 40px; }
   .highlights-grid { grid-template-columns: repeat(2, 1fr); }
   .model-grid { grid-template-columns: repeat(2, 1fr); }
+  .chooser-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
   .areas-grid, .why-grid, .footer-grid, .trust-strip-inner { grid-template-columns: 1fr; }
@@ -652,6 +711,7 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
   .product-grid.cols-2 > .product-card { flex: 0 1 100%; }
   section.block { padding: 64px 0; }
   .hero h1 { font-size: 38px; }
-  .highlights-grid, .model-grid { grid-template-columns: 1fr; }
+  .highlights-grid, .model-grid, .chooser-grid { grid-template-columns: 1fr; }
   .series-hero { padding: 32px 0 64px; }
+  .hub-hero { padding: 56px 0 64px; }
 }

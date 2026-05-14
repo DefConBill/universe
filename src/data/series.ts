@@ -138,7 +138,7 @@ export const series: Series[] = [
     shortName: 'Twilight',
     tagline: 'Where every soak feels like a getaway.',
     description:
-      "The Twilight Series offers a curated balance of luxury and approachability — refined design, exclusive features, and a quietly powerful hydrotherapy experience tuned for everyday relaxation rather than aggressive therapy. [PLACEHOLDER copy — confirm with Bill.]",
+      "The Twilight Series offers a curated balance of luxury and approachability — refined design, exclusive features, and a quietly powerful hydrotherapy experience tuned for everyday relaxation rather than aggressive therapy.",
     hero: '/images/series-twilight.jpg',
     cardImage: '/images/series-twilight.jpg',
     pageTitle: 'Master Spas Twilight Series Hot Tubs | Hot Tub Universe — Bedford NS',
@@ -170,16 +170,37 @@ export const series: Series[] = [
       {
         slug: 'ts-8-25',
         name: 'TS 8.25',
-        seating: 'Seats 6',
-        dimensions: "8' × 7'",
-        description: '[PLACEHOLDER] Large family Twilight — open seating, lounge, full-body hydrotherapy.',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'ts-8-2',
+        name: 'TS 8.2',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'ts-7-25',
+        name: 'TS 7.25',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'ts-7-2',
+        name: 'TS 7.2',
+        description: 'Specs and pricing available on request.',
       },
       {
         slug: 'ts-67-25',
         name: 'TS 67.25',
-        seating: 'Seats 5–6',
-        dimensions: "7'9\" × 6'9\"",
-        description: '[PLACEHOLDER] Mid-size Twilight — balanced seating with great jet variety.',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'ts-6-2',
+        name: 'TS 6.2',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'ts-240x',
+        name: 'TS 240X',
+        description: 'Specs and pricing available on request.',
       },
     ],
     faqs: [
@@ -208,7 +229,7 @@ export const series: Series[] = [
     shortName: 'Clarity',
     tagline: 'Rejuvenation, comfort, and wellness — on a different level.',
     description:
-      "Clarity Spas offer a way to enjoy rejuvenation, comfort and wellness on a whole different level. Built for thoughtful daily use, with clean lines, intuitive controls, and quiet operation that fits naturally into your home. [Description to be expanded with Bill.]",
+      "Clarity Spas offer a way to enjoy rejuvenation, comfort and wellness on a whole different level. Built for thoughtful daily use, with clean lines, intuitive controls, and quiet operation that fits naturally into your home.",
     hero: '/images/series-clarity.jpg',
     cardImage: '/images/series-clarity.jpg',
     pageTitle: 'Clarity Spas Hot Tubs | Hot Tub Universe — Bedford NS',
@@ -238,16 +259,39 @@ export const series: Series[] = [
     ],
     models: [
       {
-        slug: 'clarity-1',
-        name: 'Clarity Model 1',
-        seating: 'Seats 5–6',
-        description: '[PLACEHOLDER — confirm model lineup with Bill.]',
+        slug: 'balance-9',
+        name: 'Balance 9',
+        description: 'Specs and pricing available on request.',
       },
       {
-        slug: 'clarity-2',
-        name: 'Clarity Model 2',
-        seating: 'Seats 4',
-        description: '[PLACEHOLDER — confirm model lineup with Bill.]',
+        slug: 'balance-8',
+        name: 'Balance 8',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'precision-8',
+        name: 'Precision 8',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'balance-7',
+        name: 'Balance 7',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'precision-7',
+        name: 'Precision 7',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'balance-6',
+        name: 'Balance 6',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'balance-6-cs',
+        name: 'Balance 6 CS',
+        description: 'Specs and pricing available on request.',
       },
     ],
     faqs: [
@@ -272,7 +316,7 @@ export const series: Series[] = [
     shortName: 'LH',
     tagline: 'Purposeful relief. Enhanced wellness.',
     description:
-      "Slip into a world of benefits that will help to improve your quality of life through purposeful relief and enhanced wellness. The LH series focuses on the therapeutic essentials — accessible pricing, dependable performance, and hydrotherapy that matters. [Description to be expanded with Bill.]",
+      "Slip into a world of benefits that will help to improve your quality of life through purposeful relief and enhanced wellness. The LH series focuses on the therapeutic essentials — accessible pricing, dependable performance, and hydrotherapy that matters.",
     hero: '/images/series-lh.jpg',
     cardImage: '/images/series-lh.jpg',
     pageTitle: 'LH Series Hot Tubs | Hot Tub Universe — Bedford NS',
@@ -302,16 +346,29 @@ export const series: Series[] = [
     ],
     models: [
       {
-        slug: 'lh-1',
-        name: 'LH Model 1',
-        seating: 'Seats 5',
-        description: '[PLACEHOLDER — confirm model lineup with Bill.]',
+        slug: 'l7',
+        name: 'L7',
+        description: 'Specs and pricing available on request.',
       },
       {
-        slug: 'lh-2',
-        name: 'LH Model 2',
-        seating: 'Seats 3–4',
-        description: '[PLACEHOLDER — confirm model lineup with Bill.]',
+        slug: 's7',
+        name: 'S7',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'l6',
+        name: 'L6',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 's6',
+        name: 'S6',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'l5',
+        name: 'L5',
+        description: 'Specs and pricing available on request.',
       },
     ],
     faqs: [
@@ -336,7 +393,7 @@ export const series: Series[] = [
     shortName: 'Getaway',
     tagline: 'Affordable, plug-and-play hot tubs for first-time owners.',
     description:
-      "Five affordable models that bring all the joy of hot tub ownership without the premium price tag. Plug-and-play friendly, perfect for first-time owners, smaller backyards, or anyone who just wants to enjoy the soak. [PLACEHOLDER copy — confirm with Bill.]",
+      "Five affordable models that bring all the joy of hot tub ownership without the premium price tag. Plug-and-play friendly, perfect for first-time owners, smaller backyards, or anyone who just wants to enjoy the soak.",
     hero: '/images/series-getaway.jpg',
     cardImage: '/images/series-getaway.jpg',
     pageTitle: 'Getaway Hot Tubs | Hot Tub Universe — Bedford NS',
@@ -366,22 +423,29 @@ export const series: Series[] = [
     ],
     models: [
       {
+        slug: 'bar-harbor-le',
+        name: 'Bar Harbor LE',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'bar-harbor-se',
+        name: 'Bar Harbor SE',
+        description: 'Specs and pricing available on request.',
+      },
+      {
         slug: 'ocho-rios-se',
         name: 'Ocho Rios SE',
-        seating: 'Seats 5',
-        description: '[PLACEHOLDER] Popular mid-size Getaway with full seating and entry-level jets.',
+        description: 'Specs and pricing available on request.',
       },
       {
-        slug: 'getaway-2',
-        name: 'Getaway Model 2',
-        seating: 'Seats 4',
-        description: '[PLACEHOLDER — confirm full lineup with Bill.]',
+        slug: 'ocho-rios-cs',
+        name: 'Ocho Rios CS',
+        description: 'Specs and pricing available on request.',
       },
       {
-        slug: 'getaway-3',
-        name: 'Getaway Model 3',
-        seating: 'Seats 2–3',
-        description: '[PLACEHOLDER — confirm full lineup with Bill.]',
+        slug: 'san-miguel',
+        name: 'San Miguel',
+        description: 'Specs and pricing available on request.',
       },
     ],
     faqs: [
