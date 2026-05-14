@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { series as allSeries, getOtherSeries, type Series } from '../../data/series';
+
+export async function getStaticPaths() {
+  return allSeries.map((s) => ({
+    params: { series: s.slug },
+    props: { seriesData: s },
+  }));
+}
+
+interface Props {
+  seriesData: Series;
+}
+
+const { seriesData } = Astro.props;
+const others = getOtherSeries(seriesData.slug);
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+
+// BreadcrumbList schema
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Hot Tubs', item: `${siteOrigin}/hot-tubs/` },
+    { '@type': 'ListItem', position: 3, name: seriesData.name, item: `${siteOrigin}/hot-tubs/${seriesData.slug}/` },
+  ],
+};
+
+// FAQPage schema — critical for local SEO rich results
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: seriesData.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Icon library — inline SVG by name, used in highlights
+const icons: Record<string, string> = {
+  jets: '<circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/>',
+  therapy: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  design: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  energy: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  warranty: '<path d="M12 2L4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/>',
+  water: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+};
+
+const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
+---
+<BaseLayout title={seriesData.pageTitle} description={seriesData.pageDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li><a href="/hot-tubs/">Hot Tubs</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">{seriesData.name}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Series Hero -->
+  <section class="series-hero">
+    <div class="container series-hero-inner">
+      <div class="series-hero-content">
+        <div class="series-hero-brand">{seriesData.brand}</div>
+        <h1>{seriesData.name}</h1>
+        <p class="series-hero-tagline">{seriesData.tagline}</p>
+        <p class="series-hero-desc">{seriesData.description}</p>
+        <div class="hero-ctas">
+          <a href="/contact/" class="btn btn-primary">
+            Request a Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/#visit" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Visit Bedford Showroom
+          </a>
+        </div>
+      </div>
+      <div class="series-hero-image">
+        <img src={seriesData.hero} alt={heroAlt} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">What makes it different</div>
+        <h2>The {seriesData.shortName} difference.</h2>
+      </div>
+      <div class="highlights-grid">
+        {seriesData.highlights.map((h) => (
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" set:html={icons[h.icon] ?? icons.design} />
+            </div>
+            <h3>{h.title}</h3>
+            <p>{h.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Models -->
+  <section class="block">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Models in this series</div>
+        <h2>Pick the {seriesData.shortName} that fits your space.</h2>
+        <p>Final specs and pricing depend on configuration. Visit the Bedford showroom or request a quote to confirm what's in stock.</p>
+      </div>
+      <div class="model-grid">
+        {seriesData.models.map((m) => (
+          <div class="model-card">
+            <div class="model-card-image">
+              <img src={seriesData.hero} alt={`${seriesData.brand} ${m.name} hot tub`} loading="lazy" />
+            </div>
+            <div class="model-card-body">
+              <h3>{m.name}</h3>
+              {m.seating && <div class="model-meta">{m.seating}{m.dimensions ? ` · ${m.dimensions}` : ''}</div>}
+              {m.description && <p>{m.description}</p>}
+              <a href="/contact/" class="model-card-link">
+                Request pricing
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block cream">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Common Questions</div>
+        <h2>{seriesData.shortName} FAQs.</h2>
+      </div>
+      <div class="faq-list">
+        {seriesData.faqs.map((f) => (
+          <details class="faq-item">
+            <summary>
+              <span>{f.q}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Showroom CTA -->
+  <section class="visit-section">
+    <div class="container">
+      <div class="visit-grid">
+        <div class="visit-content">
+          <div class="section-eyebrow">Next step</div>
+          <h2>Come sit in a {seriesData.shortName}.</h2>
+          <p>Photos and specs are a starting point. The real decision happens when you climb in. Drop by the Bedford showroom — we'll show you the differences between models in real water.</p>
+          <div class="hero-ctas" style="margin-bottom: 0;">
+            <a href="https://maps.google.com/?q=20+Duke+Street+Unit+109+Bedford+NS" class="btn btn-primary" rel="noopener">
+              Get Directions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/contact/" class="btn btn-outline">Request a Quote</a>
+          </div>
+        </div>
+        <div class="visit-address">
+          <div class="visit-address-line">
+            <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="visit-address-label">Showroom</div>
+              <div class="visit-address-value">20 Duke Street, Unit 109<br />Bedford, NS B4A 2Z5</div>
+            </div>
+          </div>
+          <div class="visit-address-line">
+            <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <div class="visit-address-label">Phone</div>
+              <div class="visit-address-value">902-576-5115</div>
+            </div>
+          </div>
+          <div class="visit-address-line">
+            <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <div class="visit-address-label">Hours</div>
+              <div class="visit-address-value">Mon–Sat · 10am–5pm<br />Sun · Closed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other series -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Browse all five series</div>
+        <h2>Other {seriesData.brand === 'Getaway' ? 'series' : 'hot tubs'} we carry.</h2>
+        <p>Not sure {seriesData.shortName} is the right fit? Browse the rest of our lineup.</p>
+      </div>
+      <div class="product-grid">
+        {others.map((s) => (
+          <ProductCard
+            brand={s.brand}
+            name={s.name}
+            description={s.tagline}
+            image={s.cardImage}
+            imageAlt={`${s.brand} ${s.name}`}
+            href={`/hot-tubs/${s.slug}/`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
