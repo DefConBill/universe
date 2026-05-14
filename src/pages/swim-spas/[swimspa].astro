@@ -129,18 +129,23 @@ const heroAlt = `${swimSpaData.brand} ${swimSpaData.name} swim spa`;
       </div>
 
       {swimSpaData.subSeries ? (
-        <div class="subseries-list">
+        <div class="subseries-grid">
           {swimSpaData.subSeries.map((sub) => (
-            <div class="subseries" id={sub.slug}>
-              <div class="subseries-head">
-                <h3>{sub.name}</h3>
-                {sub.description && <p>{sub.description}</p>}
-              </div>
-              <div class="model-grid">
+            <div class="subseries-card" id={sub.slug}>
+              <h3>{sub.name}</h3>
+              {sub.description && <p class="subseries-card-desc">{sub.description}</p>}
+              <ul class="subseries-models">
                 {sub.models.map((m) => (
-                  <ModelCard model={m} image={swimSpaData.hero} imageAlt={`${sub.name} ${m.name} swim spa`} />
+                  <li>
+                    <span class="subseries-model-name">{m.name}</span>
+                    {m.seating && <span class="subseries-model-meta">{m.seating}{m.dimensions ? ` · ${m.dimensions}` : ''}</span>}
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <a href="/contact/" class="subseries-cta">
+                Request pricing
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
             </div>
           ))}
         </div>
