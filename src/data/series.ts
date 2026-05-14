@@ -49,7 +49,7 @@ export const series: Series[] = [
     shortName: 'Legend',
     tagline: "Master Spas' premium therapeutic line, designed with Michael Phelps.",
     description:
-      "Designed in collaboration with 23-time Olympic gold medalist Michael Phelps, the Legend Series brings world-class hydrotherapy into your backyard. Deep ergonomic seating, the most powerful jet configurations Master Spas builds, and the construction quality of a tub designed for elite recovery. [PLACEHOLDER copy — confirm with Bill.]",
+      "Designed in collaboration with 23-time Olympic gold medalist Michael Phelps, the Legend Series brings world-class hydrotherapy into your backyard. Deep ergonomic seating, the most powerful jet configurations Master Spas builds, and the construction quality of a tub designed for elite recovery.",
     hero: '/images/series-legend.jpg',
     cardImage: '/images/series-legend.jpg',
     pageTitle: 'Master Spas Legend Series Hot Tubs | Hot Tub Universe — Bedford NS',
@@ -83,25 +83,29 @@ export const series: Series[] = [
     ],
     models: [
       {
-        slug: 'lsx-850',
-        name: 'LSX 850',
-        seating: 'Seats 8',
-        dimensions: "8'10\" × 8'10\"",
-        description: '[PLACEHOLDER] Flagship Legend model — maximum jet count, dual-lounge seating, integrated audio.',
-      },
-      {
         slug: 'lsx-700',
         name: 'LSX 700',
-        seating: 'Seats 7',
-        dimensions: "7'9\" × 7'9\"",
-        description: '[PLACEHOLDER] Mid-size Legend — full hydrotherapy package in a more compact footprint.',
+        description: 'Specs and pricing available on request.',
       },
       {
-        slug: 'lsx-560',
-        name: 'LSX 560',
-        seating: 'Seats 5–6',
-        dimensions: "7'3\" × 7'3\"",
-        description: '[PLACEHOLDER] Compact Legend — premium therapy for couples and small families.',
+        slug: 'lsx-800',
+        name: 'LSX 800',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'lsx-850',
+        name: 'LSX 850',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'lsx-900',
+        name: 'LSX 900',
+        description: 'Specs and pricing available on request.',
+      },
+      {
+        slug: 'lsx-30',
+        name: 'LSX 30',
+        description: 'Specs and pricing available on request.',
       },
     ],
     faqs: [
