@@ -3,9 +3,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { series } from '../../data/series';
+import { swimSpas } from '../../data/swim-spas';
 
-const totalModels = series.reduce((sum, s) => {
+const totalModels = swimSpas.reduce((sum, s) => {
   const flat = s.models?.length ?? 0;
   const nested = s.subSeries?.reduce((n, sub) => n + sub.models.length, 0) ?? 0;
   return sum + flat + nested;
@@ -17,29 +17,28 @@ const breadcrumbJsonLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
-    { '@type': 'ListItem', position: 2, name: 'Hot Tubs', item: `${siteOrigin}/hot-tubs/` },
+    { '@type': 'ListItem', position: 2, name: 'Swim Spas', item: `${siteOrigin}/swim-spas/` },
   ],
 };
 
-// CollectionPage / ItemList schema — helps the hub page surface in "hot tubs near me" rich results
 const collectionJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Hot Tubs at Hot Tub Universe — Halifax / Bedford',
-  url: `${siteOrigin}/hot-tubs/`,
-  hasPart: series.map((s) => ({
+  name: 'Swim Spas at Hot Tub Universe — Halifax / Bedford',
+  url: `${siteOrigin}/swim-spas/`,
+  hasPart: swimSpas.map((s) => ({
     '@type': 'Product',
     name: `${s.brand} ${s.name}`,
     description: s.tagline,
     brand: { '@type': 'Brand', name: s.brand },
-    url: `${siteOrigin}/hot-tubs/${s.slug}/`,
+    url: `${siteOrigin}/swim-spas/${s.slug}/`,
     image: `${siteOrigin}${s.cardImage}`,
   })),
 };
 ---
 <BaseLayout
-  title="Hot Tubs in Halifax & Bedford NS | Master Spas, Clarity, Getaway | Hot Tub Universe"
-  description="Five series, 29 models — from plug-and-play Getaway to the Michael Phelps Legend. Halifax's locally owned full-service hot tub dealer. Visit the Bedford showroom or browse the lineup."
+  title="Swim Spas in Halifax & Bedford NS | Michael Phelps & H2X | Hot Tub Universe"
+  description="Master Spas swim spas at Hot Tub Universe in Bedford — Michael Phelps Signature and H2X. Swim, train, and recover year-round. Delivery and service across HRM."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
@@ -54,7 +53,7 @@ const collectionJsonLd = {
       <ol>
         <li><a href="/">Home</a></li>
         <li aria-hidden="true">›</li>
-        <li aria-current="page">Hot Tubs</li>
+        <li aria-current="page">Swim Spas</li>
       </ol>
     </div>
   </nav>
@@ -63,11 +62,11 @@ const collectionJsonLd = {
   <section class="hub-hero">
     <div class="container">
       <div class="hub-hero-inner">
-        <div class="section-eyebrow">Hot Tubs</div>
-        <h1>Browse the entire lineup.</h1>
+        <div class="section-eyebrow">Swim Spas</div>
+        <h1>Swim, train, and unwind — all year.</h1>
         <p class="hub-hero-sub">
-          {series.length} series. {totalModels} models. From plug-and-play Getaway to the Michael Phelps Legend.
-          Sold, delivered, and serviced from our Bedford showroom across HRM.
+          Two Master Spas swim spa lines: the Michael Phelps Signature and the H2X. A pool, a hot tub, and a fitness tool in one footprint —
+          sized to fit HRM backyards where a traditional pool can't.
         </p>
         <div class="hero-ctas" style="justify-content: center;">
           <a href="/contact/" class="btn btn-primary">
@@ -83,79 +82,79 @@ const collectionJsonLd = {
     </div>
   </section>
 
-  <!-- All 5 series -->
+  <!-- The 2 series -->
   <section class="block">
     <div class="container">
       <div class="section-head">
-        <div class="section-eyebrow">All Five Series</div>
-        <h2>Pick a series to dig in.</h2>
-        <p>Each series has its own page with the full model list, photos, FAQ, and a path to a quote.</p>
+        <div class="section-eyebrow">Both lines we carry</div>
+        <h2>Which swim spa fits you?</h2>
+        <p>Both built by Master Spas. Both built for year-round serious swimming. Visit a series page or come compare in person.</p>
       </div>
-      <div class="product-grid">
-        {series.map((s) => (
+      <div class="product-grid cols-2" style="max-width: 880px; margin: 0 auto;">
+        {swimSpas.map((s) => (
           <ProductCard
             brand={s.brand}
             name={s.name}
             description={s.tagline}
             image={s.cardImage}
-            imageAlt={`${s.brand} ${s.name} hot tub`}
-            href={`/hot-tubs/${s.slug}/`}
+            imageAlt={`${s.brand} ${s.name} swim spa`}
+            href={`/swim-spas/${s.slug}/`}
           />
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Help me choose -->
+  <!-- What is a swim spa -->
   <section class="block alt">
     <div class="container">
       <div class="section-head">
-        <div class="section-eyebrow">Not Sure Where to Start</div>
-        <h2>Which series fits you?</h2>
-        <p>A quick orientation. The best way to decide is still to come sit in one — but here's the gist.</p>
+        <div class="section-eyebrow">If you're new to swim spas</div>
+        <h2>What exactly is a swim spa?</h2>
+        <p>A hybrid product that doesn't get the attention it deserves — especially in Atlantic Canada.</p>
       </div>
       <div class="chooser-grid">
         <div class="chooser-card">
           <div class="chooser-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 6c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+          </div>
+          <h3>Half pool, half hot tub</h3>
+          <p>A swim spa is a compact rectangular spa with a powerful jet creating a current you swim against in place. You get the swim, the soak, and the recovery in one footprint.</p>
+        </div>
+        <div class="chooser-card">
+          <div class="chooser-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="12 6 12 12 16 14"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h3>Works year-round</h3>
+          <p>Unlike a pool, you don't close it in October. Heated and insulated for cold Atlantic winters — many of our customers swim more in February than in July.</p>
+        </div>
+        <div class="chooser-card">
+          <div class="chooser-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
           </div>
-          <h3>First-time owner or smaller backyard</h3>
-          <p>Start with <a href="/hot-tubs/getaway-hot-tubs/">Getaway</a> — plug-and-play friendly, the most accessible price point, and a five-model lineup that fits most spaces.</p>
+          <h3>Fits where a pool can't</h3>
+          <p>Typically 15-19 feet long and 7-8 feet wide. Much smaller backyard footprint than a pool, with no fence/setback regulations to navigate in HRM.</p>
         </div>
         <div class="chooser-card">
           <div class="chooser-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/></svg>
           </div>
-          <h3>Recovery, therapy, or athletic use</h3>
-          <p>The <a href="/hot-tubs/legend-series/">Legend Series</a> was designed with Michael Phelps and is built around serious hydrotherapy. The right pick if you want the most powerful jets we sell.</p>
-        </div>
-        <div class="chooser-card">
-          <div class="chooser-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <h3>Everyday luxury, refined design</h3>
-          <p>The <a href="/hot-tubs/twilight-series/">Twilight Series</a> brings premium Master Spas build quality and a quietly powerful soak — tuned for daily relaxation rather than aggressive therapy.</p>
-        </div>
-        <div class="chooser-card">
-          <div class="chooser-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-          </div>
-          <h3>Quiet wellness focus</h3>
-          <p><a href="/hot-tubs/clarity-series/">Clarity</a> spas prioritize clean lines, intuitive controls, and a calmer soak. Built for thoughtful daily use without dominating your backyard.</p>
+          <h3>Adjustable swim current</h3>
+          <p>Beginner-friendly to competitive-level intensity, dialed in by you. Triathletes, marathon swimmers, and casual users all set their own pace.</p>
         </div>
         <div class="chooser-card">
           <div class="chooser-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <h3>Therapy essentials at an accessible price</h3>
-          <p>The <a href="/hot-tubs/lh-series/">LH Series</a> focuses on what matters — purposeful hydrotherapy and dependable performance — without the premium upcharge.</p>
+          <h3>Therapy seats included</h3>
+          <p>Most swim spas come with dedicated hydrotherapy seats next to the swim lane. Recover after a workout, or use the spa half independently as a hot tub.</p>
         </div>
         <div class="chooser-card">
           <div class="chooser-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
           </div>
           <h3>Still unsure?</h3>
-          <p>That's what the showroom is for. Tell us your space, your people, and how you'd use it — we'll walk you through two or three real options. <a href="/contact/">Request a quote</a> or <a href="/#visit">visit us in Bedford</a>.</p>
+          <p>The best way to understand a swim spa is to stand in one with the current running. <a href="/#visit">Visit the showroom</a> or <a href="/contact/">request a quote</a> and we'll set up a demo.</p>
         </div>
       </div>
     </div>
@@ -167,8 +166,8 @@ const collectionJsonLd = {
       <div class="visit-grid">
         <div class="visit-content">
           <div class="section-eyebrow">Plan Your Visit</div>
-          <h2>Sit in one before you decide.</h2>
-          <p>Specs and photos only get you so far. Drop by the Bedford showroom and try a few in real water — it's how most of our customers make the call.</p>
+          <h2>Try one in real water.</h2>
+          <p>Drop by the Bedford showroom — you can feel the swim current and try the therapy seats before you commit.</p>
           <div class="hero-ctas" style="margin-bottom: 0;">
             <a href="https://maps.google.com/?q=20+Duke+Street+Unit+109+Bedford+NS" class="btn btn-primary" rel="noopener">
               Get Directions

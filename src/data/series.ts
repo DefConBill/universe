@@ -14,6 +14,13 @@ export type Model = {
   description?: string;
 };
 
+export type SubSeries = {
+  slug: string;            // e.g. 'challenger', 'trainer', 'therapool'
+  name: string;            // displayed heading, e.g. 'H2X Challenger'
+  description?: string;    // optional intro paragraph
+  models: Model[];
+};
+
 export type Highlight = {
   title: string;
   description: string;
@@ -37,7 +44,14 @@ export type Series = {
   pageTitle: string;       // <title>
   pageDescription: string; // meta description
   highlights: Highlight[];
-  models: Model[];
+  /**
+   * A series can hold its models flat OR group them into sub-series.
+   * Use `models` for a flat list (most series).
+   * Use `subSeries` for nested groupings (e.g. H2X → Challenger / Trainer / Therapool).
+   * One should be populated; the page template handles either.
+   */
+  models?: Model[];
+  subSeries?: SubSeries[];
   faqs: FAQ[];
 };
 

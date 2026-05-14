@@ -584,6 +584,34 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
 .model-card-link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
 .model-card:hover .model-card-link svg { transform: translateX(4px); }
 
+/* ---------- Sub-series grouping (e.g. H2X → Challenger, Trainer, Therapool) ---------- */
+.subseries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+.subseries {
+  scroll-margin-top: 100px;  /* offset for sticky header when deep-linking */
+}
+.subseries-head {
+  text-align: left;
+  margin-bottom: 28px;
+  max-width: 760px;
+  border-left: 3px solid var(--orange);
+  padding-left: 20px;
+}
+.subseries-head h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--on-dark-strong);
+}
+.subseries-head p {
+  font-size: 15px;
+  color: var(--on-dark-body);
+  line-height: 1.55;
+}
+
 /* ---------- FAQ accordion ---------- */
 .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 .faq-item {
@@ -682,6 +710,34 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
 .chooser-card p { font-size: 14px; color: var(--on-dark-body); line-height: 1.6; }
 .chooser-card a { color: var(--orange); font-weight: 600; }
 .chooser-card a:hover { text-decoration: underline; }
+
+/* ---------- Cross-category callout card ---------- */
+/* Used at the bottom of swim spa series pages to link to /hot-tubs/, and vice versa */
+.product-card.cross-category {
+  background: var(--ink-3);
+  border-color: rgba(237,128,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-card.cross-category:hover {
+  background: var(--ink-4);
+  border-color: var(--orange);
+}
+.cross-category-inner {
+  padding: 48px 32px;
+  text-align: center;
+  width: 100%;
+}
+.cross-category .chooser-icon { margin: 0 auto 20px; }
+.cross-category .product-card-brand { margin-bottom: 10px; color: var(--orange); }
+.cross-category h3 { color: var(--on-dark-strong); margin-bottom: 12px; }
+.cross-category p { color: var(--on-dark-body); margin-bottom: 20px; }
+.cross-category .product-card-link {
+  color: var(--orange);
+  justify-content: center;
+  display: inline-flex;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {

@@ -4,46 +4,43 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import ModelCard from '../../components/ModelCard.astro';
-import { series as allSeries, getOtherSeries, type Series } from '../../data/series';
+import { swimSpas as allSwimSpas, getOtherSwimSpas, type Series } from '../../data/swim-spas';
 
 export async function getStaticPaths() {
-  return allSeries.map((s) => ({
-    params: { series: s.slug },
-    props: { seriesData: s },
+  return allSwimSpas.map((s) => ({
+    params: { swimspa: s.slug },
+    props: { swimSpaData: s },
   }));
 }
 
 interface Props {
-  seriesData: Series;
+  swimSpaData: Series;
 }
 
-const { seriesData } = Astro.props;
-const others = getOtherSeries(seriesData.slug);
+const { swimSpaData } = Astro.props;
+const others = getOtherSwimSpas(swimSpaData.slug);
 const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
 
-// BreadcrumbList schema
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
-    { '@type': 'ListItem', position: 2, name: 'Hot Tubs', item: `${siteOrigin}/hot-tubs/` },
-    { '@type': 'ListItem', position: 3, name: seriesData.name, item: `${siteOrigin}/hot-tubs/${seriesData.slug}/` },
+    { '@type': 'ListItem', position: 2, name: 'Swim Spas', item: `${siteOrigin}/swim-spas/` },
+    { '@type': 'ListItem', position: 3, name: swimSpaData.name, item: `${siteOrigin}/swim-spas/${swimSpaData.slug}/` },
   ],
 };
 
-// FAQPage schema — critical for local SEO rich results
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: seriesData.faqs.map((f) => ({
+  mainEntity: swimSpaData.faqs.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
 
-// Icon library — inline SVG by name, used in highlights
 const icons: Record<string, string> = {
   jets: '<circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/>',
   therapy: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
@@ -53,9 +50,9 @@ const icons: Record<string, string> = {
   water: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
 };
 
-const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
+const heroAlt = `${swimSpaData.brand} ${swimSpaData.name} swim spa`;
 ---
-<BaseLayout title={seriesData.pageTitle} description={seriesData.pageDescription}>
+<BaseLayout title={swimSpaData.pageTitle} description={swimSpaData.pageDescription}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
@@ -69,21 +66,21 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
       <ol>
         <li><a href="/">Home</a></li>
         <li aria-hidden="true">›</li>
-        <li><a href="/hot-tubs/">Hot Tubs</a></li>
+        <li><a href="/swim-spas/">Swim Spas</a></li>
         <li aria-hidden="true">›</li>
-        <li aria-current="page">{seriesData.name}</li>
+        <li aria-current="page">{swimSpaData.name}</li>
       </ol>
     </div>
   </nav>
 
-  <!-- Series Hero -->
+  <!-- Hero -->
   <section class="series-hero">
     <div class="container series-hero-inner">
       <div class="series-hero-content">
-        <div class="series-hero-brand">{seriesData.brand}</div>
-        <h1>{seriesData.name}</h1>
-        <p class="series-hero-tagline">{seriesData.tagline}</p>
-        <p class="series-hero-desc">{seriesData.description}</p>
+        <div class="series-hero-brand">{swimSpaData.brand}</div>
+        <h1>{swimSpaData.name}</h1>
+        <p class="series-hero-tagline">{swimSpaData.tagline}</p>
+        <p class="series-hero-desc">{swimSpaData.description}</p>
         <div class="hero-ctas">
           <a href="/contact/" class="btn btn-primary">
             Request a Quote
@@ -96,7 +93,7 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
         </div>
       </div>
       <div class="series-hero-image">
-        <img src={seriesData.hero} alt={heroAlt} />
+        <img src={swimSpaData.hero} alt={heroAlt} />
       </div>
     </div>
   </section>
@@ -106,10 +103,10 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
     <div class="container">
       <div class="section-head">
         <div class="section-eyebrow">What makes it different</div>
-        <h2>The {seriesData.shortName} difference.</h2>
+        <h2>The {swimSpaData.shortName} difference.</h2>
       </div>
       <div class="highlights-grid">
-        {seriesData.highlights.map((h) => (
+        {swimSpaData.highlights.map((h) => (
           <div class="highlight-card">
             <div class="highlight-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" set:html={icons[h.icon] ?? icons.design} />
@@ -127,14 +124,33 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
     <div class="container">
       <div class="section-head">
         <div class="section-eyebrow">Models in this series</div>
-        <h2>Pick the {seriesData.shortName} that fits your space.</h2>
+        <h2>Pick the {swimSpaData.shortName} that fits your space.</h2>
         <p>Final specs and pricing depend on configuration. Visit the Bedford showroom or request a quote to confirm what's in stock.</p>
       </div>
-      <div class="model-grid">
-        {seriesData.models?.map((m) => (
-          <ModelCard model={m} image={seriesData.hero} imageAlt={`${seriesData.brand} ${m.name} hot tub`} />
-        ))}
-      </div>
+
+      {swimSpaData.subSeries ? (
+        <div class="subseries-list">
+          {swimSpaData.subSeries.map((sub) => (
+            <div class="subseries" id={sub.slug}>
+              <div class="subseries-head">
+                <h3>{sub.name}</h3>
+                {sub.description && <p>{sub.description}</p>}
+              </div>
+              <div class="model-grid">
+                {sub.models.map((m) => (
+                  <ModelCard model={m} image={swimSpaData.hero} imageAlt={`${sub.name} ${m.name} swim spa`} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="model-grid">
+          {swimSpaData.models?.map((m) => (
+            <ModelCard model={m} image={swimSpaData.hero} imageAlt={`${swimSpaData.brand} ${m.name} swim spa`} />
+          ))}
+        </div>
+      )}
     </div>
   </section>
 
@@ -143,10 +159,10 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
     <div class="container">
       <div class="section-head">
         <div class="section-eyebrow">Common Questions</div>
-        <h2>{seriesData.shortName} FAQs.</h2>
+        <h2>{swimSpaData.shortName} FAQs.</h2>
       </div>
       <div class="faq-list">
-        {seriesData.faqs.map((f) => (
+        {swimSpaData.faqs.map((f) => (
           <details class="faq-item">
             <summary>
               <span>{f.q}</span>
@@ -165,8 +181,8 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
       <div class="visit-grid">
         <div class="visit-content">
           <div class="section-eyebrow">Next step</div>
-          <h2>Come sit in a {seriesData.shortName}.</h2>
-          <p>Photos and specs are a starting point. The real decision happens when you climb in. Drop by the Bedford showroom — we'll show you the differences between models in real water.</p>
+          <h2>Come see a {swimSpaData.shortName} in real water.</h2>
+          <p>A swim spa is a big decision — much easier when you've actually felt the current and sat in the therapy seats. Drop by the Bedford showroom and we'll demo both lines side-by-side.</p>
           <div class="hero-ctas" style="margin-bottom: 0;">
             <a href="https://maps.google.com/?q=20+Duke+Street+Unit+109+Bedford+NS" class="btn btn-primary" rel="noopener">
               Get Directions
@@ -202,25 +218,39 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
     </div>
   </section>
 
-  <!-- Other series -->
+  <!-- Other swim spa + cross-sell to hot tubs -->
   <section class="block alt">
     <div class="container">
       <div class="section-head">
-        <div class="section-eyebrow">Browse all five series</div>
-        <h2>Other {seriesData.brand === 'Getaway' ? 'series' : 'hot tubs'} we carry.</h2>
-        <p>Not sure {seriesData.shortName} is the right fit? Browse the rest of our lineup.</p>
+        <div class="section-eyebrow">Compare</div>
+        <h2>Other swim spa to consider.</h2>
+        <p>We carry both Master Spas swim spa lines so you can compare side-by-side.</p>
       </div>
-      <div class="product-grid">
+      <div class="product-grid cols-2" style="max-width: 880px; margin: 0 auto;">
         {others.map((s) => (
           <ProductCard
             brand={s.brand}
             name={s.name}
             description={s.tagline}
             image={s.cardImage}
-            imageAlt={`${s.brand} ${s.name}`}
-            href={`/hot-tubs/${s.slug}/`}
+            imageAlt={`${s.brand} ${s.name} swim spa`}
+            href={`/swim-spas/${s.slug}/`}
           />
         ))}
+        <a href="/hot-tubs/" class="product-card cross-category">
+          <div class="cross-category-inner">
+            <div class="chooser-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </div>
+            <div class="product-card-brand">Not the right fit?</div>
+            <h3>Browse our hot tubs</h3>
+            <p>Five hot tub series across three price tiers — from plug-and-play Getaway to the Michael Phelps Legend.</p>
+            <span class="product-card-link">
+              Explore hot tubs
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
       </div>
     </div>
   </section>

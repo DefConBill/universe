@@ -1,0 +1,29 @@
+---
+import type { Model } from '../data/series';
+
+interface Props {
+  model: Model;
+  image: string;
+  imageAlt: string;
+}
+
+const { model, image, imageAlt } = Astro.props;
+---
+<div class="model-card">
+  <div class="model-card-image">
+    <img src={image} alt={imageAlt} loading="lazy" />
+  </div>
+  <div class="model-card-body">
+    <h3>{model.name}</h3>
+    {model.seating && (
+      <div class="model-meta">
+        {model.seating}{model.dimensions ? ` · ${model.dimensions}` : ''}
+      </div>
+    )}
+    {model.description && <p>{model.description}</p>}
+    <a href="/contact/" class="model-card-link">
+      Request pricing
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
