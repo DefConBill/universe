@@ -30,6 +30,7 @@ export type Model = {
   power?: string;             // '240 V / 50 Amp'
   jets?: string;              // '62 Stainless Steel'
   pumps?: string;             // '3'
+  propulsion?: string;        // swim spa only — e.g. 'Airless VIP Technology'
   waterFeatures?: string;
   waterCare?: string;         // 'EcoPur® Charge + Ozone'
   lighting?: string;          // 'Orion Light System™'
