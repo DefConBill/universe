@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: `${siteOrigin}/contact/` },
+  ],
+};
+
+const contactPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Hot Tub Universe',
+  url: `${siteOrigin}/contact/`,
+  about: {
+    '@type': 'LocalBusiness',
+    name: 'Hot Tub Universe',
+    telephone: '+1-902-576-5115',
+    email: 'theresa@hottubuniverse.ca',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '20 Duke Street, Unit 109',
+      addressLocality: 'Bedford',
+      addressRegion: 'NS',
+      postalCode: 'B4A 2Z5',
+      addressCountry: 'CA',
+    },
+  },
+};
+
+// IMPORTANT — Bill, replace this with the access key emailed to you by web3forms.com
+// when you registered theresa@hottubuniverse.ca. Until then, submissions won't deliver.
+const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_FROM_WEB3FORMS_DOT_COM';
+---
+<BaseLayout
+  title="Request a Quote | Hot Tub Universe — Bedford NS"
+  description="Request a personalized quote on hot tubs, swim spas, or service. We'll get back to you within one business day from our Bedford, Nova Scotia showroom."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(contactPageJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">Contact</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hub-hero">
+    <div class="container">
+      <div class="hub-hero-inner">
+        <div class="section-eyebrow">Get in touch</div>
+        <h1>Request a Quote.</h1>
+        <p class="hub-hero-sub">
+          Tell us about your space and we'll send back pricing — delivery, install, electrical, and accessories included. We typically reply within one business day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form + contact info -->
+  <section class="block">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <form
+            id="quote-form"
+            class="contact-form"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+          >
+            <!-- Web3Forms config -->
+            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+            <input type="hidden" name="subject" value="Hot Tub Universe — Quote Request" />
+            <input type="hidden" name="from_name" value="Hot Tub Universe — Web Form" />
+            <input type="hidden" name="redirect" value={`${siteOrigin}/contact/thanks/`} />
+            <!-- Honeypot (spam protection) — bots fill this, humans don't see it -->
+            <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
+
+            <div class="form-row">
+              <label for="name">Full name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" required autocomplete="name" />
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-row">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+              <div class="form-row">
+                <label for="phone">Phone <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="interest">I'm interested in <span class="req">*</span></label>
+              <select id="interest" name="interest" required>
+                <option value="">Select an option…</option>
+                <option value="Hot tubs">Hot tubs</option>
+                <option value="Swim spas">Swim spas</option>
+                <option value="Service or repair">Service or repair</option>
+                <option value="Watercare & accessories">Watercare &amp; accessories</option>
+                <option value="Not sure — need help choosing">Not sure — need help choosing</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="model">Specific model or details (optional)</label>
+              <input
+                type="text"
+                id="model"
+                name="model"
+                placeholder="e.g. LSX 700, Bar Harbor SE, Trainer 15D"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-row">
+              <label>Best way to reach you?</label>
+              <div class="radio-group">
+                <label class="radio">
+                  <input type="radio" name="contact_method" value="Either" checked />
+                  <span>Either</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="contact_method" value="Email" />
+                  <span>Email</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="contact_method" value="Phone" />
+                  <span>Phone</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Tell us more (optional)</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Backyard size? Timeline? Anything else we should know?"
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <button type="submit" class="btn btn-primary" id="submit-btn">
+                <span class="btn-label">Send Request</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <div class="form-note">We'll reply within one business day. Your info is only used to respond — never shared.</div>
+            </div>
+
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <!-- Contact info column -->
+        <aside class="contact-aside">
+          <div class="contact-info-card">
+            <div class="contact-info-section">
+              <div class="section-eyebrow">Call or visit</div>
+              <h3>Hot Tub Universe</h3>
+            </div>
+
+            <div class="visit-address-line">
+              <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div>
+                <div class="visit-address-label">Phone</div>
+                <a class="visit-address-value contact-link" href="tel:9025765115">902-576-5115</a>
+              </div>
+            </div>
+
+            <div class="visit-address-line">
+              <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div>
+                <div class="visit-address-label">Email</div>
+                <a class="visit-address-value contact-link" href="mailto:theresa@hottubuniverse.ca">theresa@hottubuniverse.ca</a>
+              </div>
+            </div>
+
+            <div class="visit-address-line">
+              <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div>
+                <div class="visit-address-label">Showroom</div>
+                <div class="visit-address-value">20 Duke Street, Unit 109<br />Bedford, NS B4A 2Z5</div>
+              </div>
+            </div>
+
+            <div class="visit-address-line">
+              <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div>
+                <div class="visit-address-label">Hours</div>
+                <div class="visit-address-value">Mon–Sat · 10am–5pm<br />Sun · Closed</div>
+              </div>
+            </div>
+
+            <a href="https://maps.google.com/?q=20+Duke+Street+Unit+109+Bedford+NS" target="_blank" rel="noopener" class="btn btn-outline directions-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Get Directions
+            </a>
+          </div>
+
+          <div class="contact-info-card whats-next">
+            <div class="section-eyebrow">What happens next</div>
+            <ol class="next-steps">
+              <li><strong>You hit send.</strong> Your request goes straight to Theresa's inbox.</li>
+              <li><strong>We reply within one business day</strong> with pricing or follow-up questions.</li>
+              <li><strong>You decide what's next</strong> — visit the showroom, schedule a site assessment, or just keep researching. No pressure.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <!-- Progressive-enhancement submission handler -->
+  <script is:inline>
+    (function() {
+      const form = document.getElementById('quote-form');
+      const status = document.getElementById('form-status');
+      const submitBtn = document.getElementById('submit-btn');
+      if (!form || !status || !submitBtn) return;
+
+      const btnLabel = submitBtn.querySelector('.btn-label');
+      const originalLabel = btnLabel ? btnLabel.textContent : 'Send Request';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.className = 'form-status';
+        status.textContent = '';
+        submitBtn.disabled = true;
+        if (btnLabel) btnLabel.textContent = 'Sending…';
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const json = await res.json();
+          if (json.success) {
+            status.className = 'form-status success';
+            status.innerHTML = '<strong>Thanks — your request is on its way.</strong><br>We\'ll reply within one business day. Check your inbox for a confirmation copy if you provided an email.';
+            form.reset();
+            // Hide the form fields, keep status visible
+            form.querySelectorAll('.form-row, .form-grid-2').forEach((el) => {
+              if (!el.contains(status)) el.style.display = 'none';
+            });
+            window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+          } else {
+            throw new Error(json.message || 'Submission failed');
+          }
+        } catch (err) {
+          status.className = 'form-status error';
+          status.innerHTML = '<strong>Something went wrong.</strong> Please try again or call us directly at <a href="tel:9025765115">902-576-5115</a>.';
+          submitBtn.disabled = false;
+          if (btnLabel) btnLabel.textContent = originalLabel;
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

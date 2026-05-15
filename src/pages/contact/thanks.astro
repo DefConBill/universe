@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Thanks — Hot Tub Universe"
+  description="Your quote request is on its way. We'll reply within one business day."
+>
+  <Header />
+
+  <section class="block">
+    <div class="container" style="max-width: 640px; text-align: center; padding: 80px 24px;">
+      <div class="thanks-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1>Thanks — your request is on its way.</h1>
+      <p style="font-size: 18px; color: var(--on-dark-body); margin: 16px 0 32px;">
+        We'll reply within one business day from our Bedford showroom.
+        If your inquiry is urgent, give us a call at <a href="tel:9025765115" style="color: var(--orange); font-weight: 600;">902-576-5115</a>.
+      </p>
+      <div class="hero-ctas" style="justify-content: center; margin-bottom: 0;">
+        <a href="/" class="btn btn-primary">
+          Back to Home
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/hot-tubs/" class="btn btn-outline">Keep Browsing</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .thanks-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    background: rgba(46, 168, 106, 0.12);
+    border: 1px solid rgba(46, 168, 106, 0.35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--success, #2EA86A);
+  }
+  .thanks-icon svg { width: 36px; height: 36px; }
+  h1 { font-size: clamp(32px, 4vw, 44px); }
+</style>
