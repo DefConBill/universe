@@ -185,11 +185,22 @@ export const swimSpas: Series[] = [
       {
         slug: 'challenger',
         name: 'H2X Challenger',
-        description: '[Description to be confirmed.] The flagship H2X line — balanced for serious swimming and full hydrotherapy.',
+        description: 'The flagship H2X line. Six airless VIP jets create a smooth, wide current ideal for swimmers of all levels, with programmable AquaSpeed VSP™ controls that let you fine-tune pace for endurance, intervals, or recovery.',
+        bestFor: 'Athletes and fitness enthusiasts',
         models: [
           {
-            slug: 'challenger-model-a',
-            name: '[Challenger model — placeholder]',
+            slug: 'challenger-21-deep',
+            name: 'Challenger 21 Deep',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'challenger-19-deep-max',
+            name: 'Challenger 19 Deep MAX',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'challenger-15d',
+            name: 'Challenger 15D',
             description: 'Specs and pricing available on request.',
           },
         ],
@@ -197,11 +208,37 @@ export const swimSpas: Series[] = [
       {
         slug: 'trainer',
         name: 'H2X Trainer',
-        description: '[Description to be confirmed.] More compact and accessibly priced — focused on the essentials of the swim experience.',
+        description: 'High-performance air-injected VIP jets with adjustable swim current. Hydrotherapy and relaxation are built in, with the Xtreme Therapy Cove, massaging jets, and adjustable temperature.',
+        bestFor: 'Fitness enthusiasts and therapy seekers',
         models: [
           {
-            slug: 'trainer-model-a',
-            name: '[Trainer model — placeholder]',
+            slug: 'trainer-21-deep',
+            name: 'Trainer 21 Deep',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'trainer-21',
+            name: 'Trainer 21',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'trainer-19-deep-max',
+            name: 'Trainer 19 Deep MAX',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'trainer-15-deep',
+            name: 'Trainer 15 Deep',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'trainer-15',
+            name: 'Trainer 15',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'trainer-12',
+            name: 'Trainer 12',
             description: 'Specs and pricing available on request.',
           },
         ],
@@ -209,15 +246,41 @@ export const swimSpas: Series[] = [
       {
         slug: 'therapool',
         name: 'H2X Therapool',
-        description: '[Description to be confirmed.] Therapy-first variant — emphasizes hydrotherapy seating and the warm soak alongside the swim function.',
+        description: 'Fitness-oriented with air-injected flow stream jets and dual-speed control. Up to three flow stream jets complement the natural resistance of water — ideal for small spaces and aqua therapy. Heated up to a soothing 99 degrees.',
+        bestFor: 'Small spaces and aqua therapy seekers',
         models: [
           {
-            slug: 'therapool-model-a',
-            name: '[Therapool model — placeholder]',
+            slug: 'therapool-15',
+            name: 'Therapool 15',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'therapool-13',
+            name: 'Therapool 13',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'therapool-d',
+            name: 'Therapool D',
+            description: 'Specs and pricing available on request.',
+          },
+          {
+            slug: 'therapool-se',
+            name: 'Therapool SE',
             description: 'Specs and pricing available on request.',
           },
         ],
       },
+    ],
+    comparison: [
+      { label: 'Best for',         values: ['Athletes, fitness',     'Fitness + therapy',         'Small spaces, aqua therapy'] },
+      { label: 'Swim system',      values: ['6 Airless VIP Jets',    '4 Air-Injected VIP Jets',   '2–3 Flow Stream Jets'] },
+      { label: 'Speed control',    values: ['Programmable (AquaSpeed VSP)', 'Adjustable',         'Dual speed'] },
+      { label: 'Pumps',            values: ['3–5',                   '2–4',                       '2'] },
+      { label: 'Both swim & hot tub', values: ['Yes',                'Yes',                       '—'] },
+      { label: 'Sun Lounger',      values: ['Yes',                   'Yes (select models)',       '—'] },
+      { label: 'Xtreme Therapy Cove', values: ['Yes',                'Yes',                       '—'] },
+      { label: 'Tier',             values: ['Premium',               'Mid',                       'Entry'] },
     ],
     faqs: [
       {

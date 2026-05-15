@@ -129,28 +129,59 @@ const heroAlt = `${swimSpaData.brand} ${swimSpaData.name} swim spa`;
       </div>
 
       {swimSpaData.subSeries ? (
-        <div class="subseries-grid">
-          {swimSpaData.subSeries.map((sub) => (
-            <div class="subseries-card" id={sub.slug}>
-              <h3>{sub.name}</h3>
-              {sub.description && <p class="subseries-card-desc">{sub.description}</p>}
-              <ul class="subseries-models">
-                {sub.models.map((m) => (
-                  <li>
-                    <a href={`/swim-spas/${swimSpaData.slug}/${m.slug}/`}>
-                      <span class="subseries-model-name">{m.name}</span>
-                      {m.seating && <span class="subseries-model-meta">{m.seating}{m.dimensions ? ` · ${m.dimensions}` : ''}</span>}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact/" class="subseries-cta">
-                Request pricing
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+        <>
+          <div class="subseries-grid">
+            {swimSpaData.subSeries.map((sub) => (
+              <div class="subseries-card" id={sub.slug}>
+                <h3>{sub.name}</h3>
+                {sub.bestFor && <div class="subseries-card-bestfor">Best for: {sub.bestFor}</div>}
+                {sub.description && <p class="subseries-card-desc">{sub.description}</p>}
+                <ul class="subseries-models">
+                  {sub.models.map((m) => (
+                    <li>
+                      <a href={`/swim-spas/${swimSpaData.slug}/${m.slug}/`}>
+                        <span class="subseries-model-name">{m.name}</span>
+                        {m.seating && <span class="subseries-model-meta">{m.seating}{m.dimensions ? ` · ${m.dimensions}` : ''}</span>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <a href="/contact/" class="subseries-cta">
+                  Request pricing
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {swimSpaData.comparison && (
+            <div class="comparison-wrapper">
+              <h3 class="comparison-heading">What's the difference?</h3>
+              <div class="comparison-table-scroll">
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      {swimSpaData.subSeries.map((sub) => (
+                        <th scope="col">{sub.name}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {swimSpaData.comparison.map((row) => (
+                      <tr>
+                        <th scope="row">{row.label}</th>
+                        {row.values.map((v) => (
+                          <td>{v}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       ) : (
         <div class="model-grid">
           {swimSpaData.models?.map((m) => (

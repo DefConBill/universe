@@ -42,7 +42,13 @@ export type SubSeries = {
   slug: string;            // e.g. 'challenger', 'trainer', 'therapool'
   name: string;            // displayed heading, e.g. 'H2X Challenger'
   description?: string;    // optional intro paragraph
+  bestFor?: string;        // short positioning line (e.g. "Athletes and fitness enthusiasts")
   models: Model[];
+};
+
+export type ComparisonRow = {
+  label: string;
+  values: string[];        // one value per sub-series, in the same order as Series.subSeries
 };
 
 export type Highlight = {
@@ -76,6 +82,11 @@ export type Series = {
    */
   models?: Model[];
   subSeries?: SubSeries[];
+  /**
+   * Optional comparison table for sub-series. When present and the page has
+   * subSeries, the template renders a comparison grid below the sub-series cards.
+   */
+  comparison?: ComparisonRow[];
   faqs: FAQ[];
 };
 
