@@ -888,17 +888,23 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
   flex: 1;
 }
 .subseries-models li {
-  padding: 12px 0;
   border-bottom: 1px solid var(--on-dark-border);
+}
+.subseries-models li:last-child { border-bottom: 0; }
+.subseries-models li a {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding: 12px 0;
+  color: inherit;
+  transition: color 0.15s ease;
 }
-.subseries-models li:last-child { border-bottom: 0; }
+.subseries-models li a:hover .subseries-model-name { color: var(--orange); }
 .subseries-model-name {
   font-size: 14px;
   font-weight: 600;
   color: var(--on-dark-strong);
+  transition: color 0.15s ease;
 }
 .subseries-model-meta {
   font-size: 12px;

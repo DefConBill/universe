@@ -137,8 +137,10 @@ const heroAlt = `${swimSpaData.brand} ${swimSpaData.name} swim spa`;
               <ul class="subseries-models">
                 {sub.models.map((m) => (
                   <li>
-                    <span class="subseries-model-name">{m.name}</span>
-                    {m.seating && <span class="subseries-model-meta">{m.seating}{m.dimensions ? ` · ${m.dimensions}` : ''}</span>}
+                    <a href={`/swim-spas/${swimSpaData.slug}/${m.slug}/`}>
+                      <span class="subseries-model-name">{m.name}</span>
+                      {m.seating && <span class="subseries-model-meta">{m.seating}{m.dimensions ? ` · ${m.dimensions}` : ''}</span>}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -152,7 +154,12 @@ const heroAlt = `${swimSpaData.brand} ${swimSpaData.name} swim spa`;
       ) : (
         <div class="model-grid">
           {swimSpaData.models?.map((m) => (
-            <ModelCard model={m} image={swimSpaData.hero} imageAlt={`${swimSpaData.brand} ${m.name} swim spa`} />
+            <ModelCard
+              model={m}
+              image={swimSpaData.hero}
+              imageAlt={`${swimSpaData.brand} ${m.name} swim spa`}
+              href={`/swim-spas/${swimSpaData.slug}/${m.slug}/`}
+            />
           ))}
         </div>
       )}
