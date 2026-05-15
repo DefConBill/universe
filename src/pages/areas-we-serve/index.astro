@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { cities } from '../../data/cities';
+
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${siteOrigin}/areas-we-serve/` },
+  ],
+};
+---
+<BaseLayout
+  title="Areas We Serve — Halifax, Bedford, Dartmouth, Sackville & HRM | Hot Tub Universe"
+  description="Hot Tub Universe delivers, installs, and services hot tubs and swim spas across Halifax Regional Municipality. Click your area for delivery details, drive time, and local FAQs."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">Areas We Serve</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hub hero -->
+  <section class="hub-hero">
+    <div class="container">
+      <div class="hub-hero-inner">
+        <div class="section-eyebrow">Where we deliver &amp; service</div>
+        <h1>Serving every corner of HRM.</h1>
+        <p class="hub-hero-sub">
+          From Bedford to Eastern Passage, we deliver, install, and service hot tubs and swim spas across Halifax Regional Municipality.
+          Pick your area below for drive time, delivery details, and answers to local questions.
+        </p>
+        <div class="hero-ctas" style="justify-content: center;">
+          <a href="/contact/" class="btn btn-primary">
+            Request a Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/#visit" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Visit Bedford Showroom
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All cities -->
+  <section class="block cream">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Pick your city</div>
+        <h2>Every area we serve.</h2>
+        <p>Each city page covers drive time from the showroom, delivery details, what to expect for service response, and city-specific FAQs.</p>
+      </div>
+      <div class="areas-grid">
+        {cities.map((c) => (
+          <a href={`/areas-we-serve/${c.slug}/`} class="area-card">
+            <div class="area-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="area-card-content">
+              <div class="area-name">{c.name}</div>
+              <div class="area-meta">{c.driveTimeText}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Don't see your area? -->
+  <section class="block">
+    <div class="container city-prose" style="text-align: center;">
+      <div class="section-eyebrow">Don't see your area listed?</div>
+      <h2>We probably still deliver there.</h2>
+      <p>HRM is a big region. We routinely deliver to Hammonds Plains, Tantallon, Fall River, Beaver Bank, Timberlea, Spryfield, Herring Cove, and beyond — the listed cities are just the ones most of our customers come from. Tell us where you live and we'll confirm delivery details and quote accordingly.</p>
+      <div class="hero-ctas" style="justify-content: center; margin-top: 24px;">
+        <a href="/contact/" class="btn btn-primary">
+          Tell us where you live
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

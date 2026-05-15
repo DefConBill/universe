@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { cities, getOtherCities, type City } from '../../data/cities';
+
+export async function getStaticPaths() {
+  return cities.map((c) => ({
+    params: { city: c.slug },
+    props: { cityData: c },
+  }));
+}
+
+interface Props {
+  cityData: City;
+}
+
+const { cityData } = Astro.props;
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+const others = getOtherCities(cityData.slug);
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${siteOrigin}/areas-we-serve/` },
+    { '@type': 'ListItem', position: 3, name: cityData.name, item: `${siteOrigin}/areas-we-serve/${cityData.slug}/` },
+  ],
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: cityData.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Page-specific LocalBusiness with areaServed targeting this city
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HotTubStore',
+  name: 'Hot Tub Universe',
+  url: `${siteOrigin}/areas-we-serve/${cityData.slug}/`,
+  telephone: '+1-902-576-5115',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '20 Duke Street, Unit 109',
+    addressLocality: 'Bedford',
+    addressRegion: 'NS',
+    postalCode: 'B4A 2Z5',
+    addressCountry: 'CA',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: cityData.name,
+    containedInPlace: {
+      '@type': 'AdministrativeArea',
+      name: 'Halifax Regional Municipality',
+    },
+  },
+};
+---
+<BaseLayout title={cityData.pageTitle} description={cityData.pageDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li><a href="/areas-we-serve/">Areas We Serve</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">{cityData.name}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="city-hero">
+    <div class="container">
+      <div class="city-hero-inner">
+        <div class="section-eyebrow">{cityData.direction} · {cityData.driveTimeText} from showroom</div>
+        <h1>Hot Tubs in {cityData.name}, NS</h1>
+        <p class="city-hero-tagline">{cityData.heroTagline}</p>
+        <div class="hero-ctas">
+          <a href="/contact/" class="btn btn-primary">
+            Request a Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/#visit" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Visit the Bedford Showroom
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="block">
+    <div class="container city-prose">
+      <p class="city-intro">{cityData.intro}</p>
+      {cityData.neighborhoods && cityData.neighborhoods.length > 0 && (
+        <div class="city-neighborhoods">
+          <div class="section-eyebrow">Neighborhoods we serve in {cityData.name}</div>
+          <div class="neighborhood-pills">
+            {cityData.neighborhoods.map((n) => <span class="neighborhood-pill">{n}</span>)}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Why HTU here -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Why HTU customers in {cityData.name} choose us</div>
+        <h2>What makes us the right local pick.</h2>
+      </div>
+      <div class="why-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        {cityData.reasons.map((r) => (
+          <div class="why-card" style="text-align: left;">
+            <h3>{r.title}</h3>
+            <p>{r.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivery & service -->
+  <section class="block">
+    <div class="container city-prose">
+      <div class="section-eyebrow">Delivery &amp; service in {cityData.name}</div>
+      <h2>How we deliver and service {cityData.name} customers.</h2>
+      <p class="city-delivery">{cityData.delivery}</p>
+    </div>
+  </section>
+
+  <!-- Cross-sell to products -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Browse the lineup</div>
+        <h2>What we sell to {cityData.name} households.</h2>
+        <p>Five hot tub series, two swim spa lines. Open the catalog to find what fits your space.</p>
+      </div>
+      <div class="chooser-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <a href="/hot-tubs/" class="chooser-card">
+          <div class="chooser-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/></svg>
+          </div>
+          <h3>Hot Tubs</h3>
+          <p>Five series — Legend, Twilight, Clarity, LH, and Getaway. From premium therapy to plug-and-play.</p>
+          <span class="chooser-cta">Browse hot tubs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="/swim-spas/" class="chooser-card">
+          <div class="chooser-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+          </div>
+          <h3>Swim Spas</h3>
+          <p>Michael Phelps Signature and H2X. Swim, train, and unwind — year-round, in your backyard.</p>
+          <span class="chooser-cta">Browse swim spas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
+        <a href="/contact/" class="chooser-card">
+          <div class="chooser-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+          </div>
+          <h3>Not sure where to start?</h3>
+          <p>Tell us about your {cityData.name} space and how you'd use it. We'll narrow the options to 2–3 that actually fit.</p>
+          <span class="chooser-cta">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block cream">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Common Questions</div>
+        <h2>{cityData.name} FAQs.</h2>
+      </div>
+      <div class="faq-list">
+        {cityData.faqs.map((f) => (
+          <details class="faq-item">
+            <summary>
+              <span>{f.q}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit showroom CTA -->
+  <section class="visit-section">
+    <div class="container">
+      <div class="visit-grid">
+        <div class="visit-content">
+          <div class="section-eyebrow">Plan your visit</div>
+          <h2>Come see them in person.</h2>
+          <p>Our Bedford showroom is {cityData.driveTimeText.toLowerCase().includes('our home') ? "in your own neighbourhood — drop by anytime during showroom hours" : `${cityData.driveTimeText} from ${cityData.name}`}. Photos and specs only go so far — the real decision happens when you sit in one.</p>
+          <div class="hero-ctas" style="margin-bottom: 0;">
+            <a href="https://maps.google.com/?q=20+Duke+Street+Unit+109+Bedford+NS" class="btn btn-primary" rel="noopener" target="_blank">
+              Get Directions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/contact/" class="btn btn-outline">Request a Quote</a>
+          </div>
+        </div>
+        <div class="visit-address">
+          <div class="visit-address-line">
+            <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="visit-address-label">Showroom</div>
+              <div class="visit-address-value">20 Duke Street, Unit 109<br />Bedford, NS B4A 2Z5</div>
+            </div>
+          </div>
+          <div class="visit-address-line">
+            <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <div class="visit-address-label">Phone</div>
+              <div class="visit-address-value">902-576-5115</div>
+            </div>
+          </div>
+          <div class="visit-address-line">
+            <div class="visit-address-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <div class="visit-address-label">Hours</div>
+              <div class="visit-address-value">Mon–Sat · 10am–5pm<br />Sun · Closed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other areas -->
+  <section class="block">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Also serving</div>
+        <h2>Other HRM communities we deliver to.</h2>
+      </div>
+      <div class="areas-grid">
+        {others.map((c) => (
+          <a href={`/areas-we-serve/${c.slug}/`} class="area-card">
+            <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="area-card-content">
+              <div class="area-name">{c.name}</div>
+              <div class="area-meta">{c.driveTimeText}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
