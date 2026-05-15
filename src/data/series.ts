@@ -171,6 +171,7 @@ export const series: Series[] = [
         longDescription:
           "Blending spacious comfort with unrivaled performance, the LSX 800 redefines relaxation at home. Thoughtfully designed for up to six adults, it features the exclusive StressRelief Neck and Shoulder Seat, a full-body lounge, and Master Blaster Foot Therapy for comprehensive hydrotherapy. With 70 precisely placed jets and elegant styling throughout, the LSX 800 delivers a level of power, comfort, and refinement that sets it apart.",
         image: '/images/model-lsx-800.jpg',
+        downShot: '/images/downshot-lsx-800.jpg',
         pdfUrl: '/pdfs/feature-sheet-lsx-800.pdf',
         seating: 'Seats 6',
         seatingCapacity: 6,
@@ -202,6 +203,7 @@ export const series: Series[] = [
         longDescription:
           "The LSX 850 combines the luxury of the Legend Series with the freedom of open seating. Designed to accommodate up to seven adults, this model features premium therapy seats and 59 intentionally placed jets for a personalized hydrotherapy experience. With elegant styling and space for effortless connection, the LSX 850 delivers relaxation and performance at the highest level.",
         image: '/images/model-lsx-850.jpg',
+        downShot: '/images/downshot-lsx-850.jpg',
         pdfUrl: '/pdfs/feature-sheet-lsx-850.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -233,6 +235,7 @@ export const series: Series[] = [
         longDescription:
           "The LSX 900 is a statement in luxury and design — the flagship of the Legend Series. Spacious open seating accommodates up to eight adults, with 72 stainless-steel jets and premium therapy seats delivering hydrotherapy that earns its name. From the exclusive StressRelief Neck and Shoulder Seat to the Master Blaster Foot Therapy, this is the soak you remember the next day.",
         image: '/images/model-lsx-900.jpg',
+        downShot: '/images/downshot-lsx-900.jpg',
         pdfUrl: '/pdfs/feature-sheet-lsx-900.pdf',
         seating: 'Seats 8',
         seatingCapacity: 8,
@@ -358,6 +361,7 @@ export const series: Series[] = [
         longDescription:
           "Where comfort meets quality. The TS 8.25 gives you the space you seek for relaxation and well-being. This seven-person hot tub features premium hydrotherapy jets, adjustable pillows, and ambient LED lighting. With a stress-less water care system and all-weather cabinet with built-in lighting, owning and caring for your hot tub is simple.",
         image: '/images/model-ts-8-25.jpg',
+        downShot: '/images/downshot-ts-8-25.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-8-25.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -388,6 +392,7 @@ export const series: Series[] = [
         longDescription:
           "Experience head-to-toe relaxation with the TS 8.2. Roomy enough for six adults, this hot tub features thoughtful jet arrangements — including a full-size lounge and StressRelief Neck and Shoulder Seat. Premium water filtration, topside controls, and built-in Wi-Fi offer a stress-less ownership experience. 46 stainless jets and the Master Blaster Foot Therapy round out a spa built for daily use.",
         image: '/images/model-ts-8-2.jpg',
+        downShot: '/images/downshot-ts-8-2.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-8-2.pdf',
         seating: 'Seats 6',
         seatingCapacity: 6,
@@ -418,6 +423,7 @@ export const series: Series[] = [
         longDescription:
           "The modern approach to the ancient practice of hydrotherapy. The TS 7.25 features 37 premium massage jets, thoughtfully placed to target high-tension areas across the neck, back, and feet. From the StressRelief Neck and Shoulder Seat to the Master Blaster Foot Therapy, every seat delivers something. Seven-seat capacity makes it a strong family-and-friends choice without going up to the 94-inch footprint.",
         image: '/images/model-ts-7-25.jpg',
+        downShot: '/images/downshot-ts-7-25.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-7-25.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -448,6 +454,7 @@ export const series: Series[] = [
         longDescription:
           "The best-selling TS 7.2 just got better with an updated design and even more thoughtful details. From a full-size lounge to adjustable spa pillows, you will have room to stretch out or spend time with those you love most. The StressRelief Neck and Shoulder Seat targets an area where you feel tension most, while a waterfall and LED lighting set the mood.",
         image: '/images/model-ts-7-2.jpg',
+        downShot: '/images/downshot-ts-7-2.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-7-2.pdf',
         seating: 'Seats 6',
         seatingCapacity: 6,
@@ -507,6 +514,7 @@ export const series: Series[] = [
         longDescription:
           "Experience uncompromised wellness and unmatched relaxation with the all-new TS 6.2. This space-conscious hot tub features the latest hydrotherapy jets, ergonomic seating, and an energy-efficient design. With built-in Wi-Fi and an advanced control system, dialing in your soak has never been easier. Five-seat capacity in a 78-inch footprint — generous comfort without a backyard-overhauling install.",
         image: '/images/model-ts-6-2.jpg',
+        downShot: '/images/downshot-ts-6-2.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-6-2.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -536,6 +544,7 @@ export const series: Series[] = [
         longDescription:
           "Maximize your backyard relaxation with the TS 240X, a corner spa that combines premium features with a space-saving design. Thoughtfully crafted for up to three adults, it offers a full hydrotherapy experience with powerful massage jets, including the exclusive Master Blaster Foot Therapy. Adjustable spa pillows and ambient lighting complete the soothing atmosphere.",
         image: '/images/model-ts-240x.jpg',
+        downShot: '/images/downshot-ts-240x.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-240x.pdf',
         seating: 'Seats 3',
         seatingCapacity: 3,
@@ -621,6 +630,7 @@ export const series: Series[] = [
         longDescription:
           "The spacious Balance 9 has an open seating arrangement with room for up to eight adults. Take advantage of the 52 adjustable massage jets while appreciating features such as LED lighting and a waterfall. The Balance 9 is designed for those who want to enjoy life and share it with others.",
         image: '/images/model-balance-9.jpg',
+        downShot: '/images/downshot-balance-9.jpg',
         pdfUrl: '/pdfs/feature-sheet-balance-9.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -649,6 +659,7 @@ export const series: Series[] = [
         longDescription:
           "The Balance 8 offers generous space and seating, giving you room to stretch out or enjoy time with others. With dual therapy pumps and 43 massaging jets, every seat is designed to deliver soothing hydrotherapy — including the StressRelief Neck and Shoulder Seat as the daily anchor. Thoughtful details like backlit cupholders, interior LED lighting, and an all-weather cabinet make this spa an inviting space for daily relaxation and lasting comfort.",
         image: '/images/model-balance-8.jpg',
+        downShot: '/images/downshot-balance-8.jpg',
         pdfUrl: '/pdfs/feature-sheet-balance-8.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -677,6 +688,7 @@ export const series: Series[] = [
         longDescription:
           "Step up to the largest Precision model — an open seating design with space for up to seven adults, without compromising on the therapy. The Precision 8 features 43 thoughtfully placed jets and dual therapy pumps, with the StressRelief Neck and Shoulder Seat as the centerpiece of every soak. Cascade waterfall and ambient LED lighting round out a spa designed for families, gatherings, and the long-soak end of the day.",
         image: '/images/model-precision-8.jpg',
+        downShot: '/images/downshot-precision-8.jpg',
         pdfUrl: '/pdfs/feature-sheet-precision-8.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -705,6 +717,7 @@ export const series: Series[] = [
         longDescription:
           "Better backyard living begins with the Balance 7. Combining our most popular size spa with much-loved features such as a contoured lounge and reverse-molded StressRelief Neck and Shoulder Seat, enjoy an incomparable relaxation experience. The adjustable massage jets bring therapeutic relief to your high-tension areas and details like contoured comfort pillows enhance overall comfort and support.",
         image: '/images/model-balance-7.jpg',
+        downShot: '/images/downshot-balance-7.jpg',
         pdfUrl: '/pdfs/feature-sheet-balance-7.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -733,6 +746,7 @@ export const series: Series[] = [
         longDescription:
           "Set the mood for relaxation with the soothing cascade waterfall and glowing LED lighting. The Precision 7 offers seating for friends or family, with 38 therapy jets to target key stress points and help ease the cares of the day. Spacious and thoughtfully designed, this spa delivers comfort and hydrotherapy in every seat.",
         image: '/images/model-precision-7.jpg',
+        downShot: '/images/downshot-precision-7.jpg',
         pdfUrl: '/pdfs/feature-sheet-precision-7.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -761,6 +775,7 @@ export const series: Series[] = [
         longDescription:
           "With 30 jets, LED lighting, and a water feature, this five-person hot tub delivers plenty of relaxation in a compact 78-inch footprint. The Balance 6 has multiple jet arrangements and a full-size lounge, so you can stretch out for the full hydrotherapy experience or sit upright with a drink in the backlit cupholder beside you. A solid entry point into the Clarity Series for couples, small families, or smaller backyards.",
         image: '/images/model-balance-6.jpg',
+        downShot: '/images/downshot-balance-6.jpg',
         pdfUrl: '/pdfs/feature-sheet-balance-6.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -789,6 +804,7 @@ export const series: Series[] = [
         longDescription:
           "This comfortable five-person hot tub features 30 hydrotherapy jets, LED lighting, and a waterfall for added ambience. The Balance 6 CS is a 110V plug-and-play — no electrician, no special wiring, no waiting. Perfect for condos, renters, or anyone who wants their first hot tub up and running the same day it's delivered. The only plug-and-play tub across our entire hot tub lineup.",
         image: '/images/model-balance-6-cs.jpg',
+        downShot: '/images/downshot-balance-6-cs.jpg',
         pdfUrl: '/pdfs/feature-sheet-balance-6-cs.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -869,6 +885,7 @@ export const series: Series[] = [
         longDescription:
           "The LH L7 is designed to help you recharge and relax at home. With contoured seating and a full-size lounge, this spa combines the soothing benefits of heat and massage for a truly comforting hydrotherapy experience. Featuring 23 jets and ergonomic seating, the LH L7 makes it easy to escape the stress of the day and enjoy time for yourself or with others.",
         image: '/images/model-l7.jpg',
+        downShot: '/images/downshot-l7.jpg',
         pdfUrl: '/pdfs/feature-sheet-l7.pdf',
         seating: 'Seats 6',
         seatingCapacity: 6,
@@ -894,6 +911,7 @@ export const series: Series[] = [
         longDescription:
           "An open invitation to unwind. Designed with a spacious, open layout, the LH S7 delivers exceptional hydrotherapy at an approachable price point. Enjoy 23 targeted jets, soothing Colorscape LED lighting, and an easy-to-use control panel that makes relaxation simple. Master Clear Salt System Ready and a deluxe tapered cover make ownership just as easy as the soak.",
         image: '/images/model-s7.jpg',
+        downShot: '/images/downshot-s7.jpg',
         pdfUrl: '/pdfs/feature-sheet-s7.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -919,6 +937,7 @@ export const series: Series[] = [
         longDescription:
           "Taking care of yourself should feel effortless. With the LH L6, it truly does. This six-person hot tub helps you manage stress, rest more deeply, and enjoy meaningful moments with family. Settle into the ergonomic seats or stretch out in the full lounge, all while 16 targeted jets deliver therapeutic hydrotherapy that helps you feel your best.",
         image: '/images/model-l6.jpg',
+        downShot: '/images/downshot-l6.jpg',
         pdfUrl: '/pdfs/feature-sheet-l6.pdf',
         seating: 'Seats 6',
         seatingCapacity: 6,
@@ -944,6 +963,7 @@ export const series: Series[] = [
         longDescription:
           "Relaxation should be easy, and the LH S6 makes it just that. This comfortable spa features an open seating layout and thoughtfully positioned jets that provide soothing, balanced hydrotherapy. Master Clear Salt System Ready, Colorscape LED lighting, and a deluxe tapered cover round out a welcoming space designed for connection, comfort, and everyday well-being.",
         image: '/images/model-s6.jpg',
+        downShot: '/images/downshot-s6.jpg',
         pdfUrl: '/pdfs/feature-sheet-s6.pdf',
         seating: 'Seats 7',
         seatingCapacity: 7,
@@ -969,6 +989,7 @@ export const series: Series[] = [
         longDescription:
           "With its compact footprint and thoughtful design, the L5 makes it easy to add a hot tub to your routine. Featuring 16 soothing jets, LED lighting, and comfortable headrests, this three-person spa delivers dependable comfort and everyday relaxation without stretching your space or your budget. The 120V plug-and-play install — convertible to 240V later — means no electrician on day one.",
         image: '/images/model-l5.jpg',
+        downShot: '/images/downshot-l5.jpg',
         pdfUrl: '/pdfs/feature-sheet-l5.pdf',
         seating: 'Seats 3',
         seatingCapacity: 3,
@@ -1046,6 +1067,7 @@ export const series: Series[] = [
         longDescription:
           "The largest hot tub in the Getaway Series, the Bar Harbor LE offers a full-size lounge, contoured seating, and 40 powerful jets — the most in the Getaway lineup. With room for the whole family, dual therapy pumps, and a 240V hardwired install, it's the Getaway choice when you want serious hydrotherapy without stepping up to a Master Spas series.",
         image: '/images/model-bar-harbor-le.jpg',
+        downShot: '/images/downshot-bar-harbor-le.jpg',
         pdfUrl: '/pdfs/feature-sheet-bar-harbor-le.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -1072,6 +1094,7 @@ export const series: Series[] = [
         longDescription:
           "With a full-size lounge, bucket seating, and 25 targeted jets, the Bar Harbor SE brings hydrotherapy home. Seating up to five, it's a versatile hot tub that makes relaxation simple for family or friends. Plug-and-play installation with a 120V GFCI cord means you can be soaking the same day it's delivered — no electrician required, convertible to 240V later if you want more heating power.",
         image: '/images/model-bar-harbor-se.jpg',
+        downShot: '/images/downshot-bar-harbor-se.jpg',
         pdfUrl: '/pdfs/feature-sheet-bar-harbor-se.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -1098,6 +1121,7 @@ export const series: Series[] = [
         longDescription:
           "Perfect for four, the Ocho Rios SE combines ergonomic seating with 17 targeted jets to create a personal hot tub escape. Compact in size but full of comfort, it's designed to transform your backyard into a go-to retreat. Plug-and-play 120V install with a GFCI cord — no electrician needed — and convertible to 240V down the road if you want to upgrade.",
         image: '/images/model-ocho-rios-se.jpg',
+        downShot: '/images/downshot-ocho-rios-se.jpg',
         pdfUrl: '/pdfs/feature-sheet-ocho-rios-se.pdf',
         seating: 'Seats 4',
         seatingCapacity: 4,
@@ -1124,6 +1148,7 @@ export const series: Series[] = [
         longDescription:
           "With seating for four, the Ocho Rios CS features 28 jets, a relaxing waterfall sconce, and backlit cupholders to keep your favorite beverage close by. The 240V hardwired install delivers stronger heating and more reliable jet performance year-round — and it's convertible to 120V plug-and-play if your space requires it. Easy evenings, weekend downtime, year-round comfort.",
         image: '/images/model-ocho-rios-cs.jpg',
+        downShot: '/images/downshot-ocho-rios-cs.jpg',
         pdfUrl: '/pdfs/feature-sheet-ocho-rios-cs.pdf',
         seating: 'Seats 4',
         seatingCapacity: 4,
@@ -1150,6 +1175,7 @@ export const series: Series[] = [
         longDescription:
           "Space at a premium? Enjoy the soothing comfort of the San Miguel from the Getaway Spas. Designed to make the most of a small footprint — just 79\" x 69\" — this three-person hot tub features 17 jets, Colorscape LED lighting, and a comfortable layout. 120V plug-and-play means it works in spaces where a dedicated electrical install isn't practical.",
         image: '/images/model-san-miguel.jpg',
+        downShot: '/images/downshot-san-miguel.jpg',
         pdfUrl: '/pdfs/feature-sheet-san-miguel.pdf',
         seating: 'Seats 3',
         seatingCapacity: 3,
