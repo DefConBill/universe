@@ -9,9 +9,32 @@
 export type Model = {
   slug: string;
   name: string;
-  seating?: string;
-  dimensions?: string;
-  description?: string;
+
+  // Display copy
+  description?: string;       // brief one-liner — shown on series page card
+  longDescription?: string;   // marketing paragraph — shown on model detail page hero
+
+  // Assets
+  image?: string;             // hero photo path under /public, e.g. /images/model-lsx-700.jpg
+  pdfUrl?: string;            // feature sheet path, e.g. /pdfs/feature-sheet-lsx-700.pdf
+
+  // Specs (all optional — fill in what's available per model)
+  seating?: string;           // freeform — e.g. "Seats 5" or "Seats 5–6"
+  seatingCapacity?: number;   // numeric — used in Product schema
+  dimensions?: string;        // imperial — '84" x 84" x 38"'
+  dimensionsMetric?: string;  // metric — '214 cm x 214 cm x 97 cm'
+  weightDry?: string;         // '1,095 lbs (497 kg)'
+  weightFull?: string;        // '4,565 lbs (2,071 kg)'
+  gallons?: string;           // '305 (1,155 L)'
+  power?: string;             // '240 V / 50 Amp'
+  jets?: string;              // '62 Stainless Steel'
+  pumps?: string;             // '3'
+  waterFeatures?: string;
+  waterCare?: string;         // 'EcoPur® Charge + Ozone'
+  lighting?: string;          // 'Orion Light System™'
+
+  // Exclusive features list
+  features?: string[];
 };
 
 export type SubSeries = {
@@ -99,7 +122,33 @@ export const series: Series[] = [
       {
         slug: 'lsx-700',
         name: 'LSX 700',
-        description: 'Specs and pricing available on request.',
+        description: 'Seats 5 · 62 jets · Exclusive StressRelief therapy seat',
+        longDescription:
+          "Experience effortless refinement with a hot tub designed with your well-being in mind. From the exclusive StressRelief Neck and Shoulder Seat™ to the soothing foot therapy feature, the LSX 700 is crafted down to the smallest detail for ultimate relaxation and lasting comfort. With 62 powerful, precisely placed jets, every seat delivers the perfect balance of luxury and performance.",
+        image: '/images/model-lsx-700.jpg',
+        pdfUrl: '/pdfs/feature-sheet-lsx-700.pdf',
+        seating: 'Seats 5',
+        seatingCapacity: 5,
+        dimensions: '84" x 84" x 38"',
+        dimensionsMetric: '214 cm x 214 cm x 97 cm',
+        weightDry: '1,095 lbs (497 kg)',
+        weightFull: '4,565 lbs (2,071 kg)',
+        gallons: '305 (1,155 L)',
+        power: '240 V / 50 Amp',
+        jets: '62 Stainless Steel',
+        pumps: '3',
+        waterFeatures: '3',
+        waterCare: 'EcoPur® Charge + Ozone',
+        lighting: 'Orion Light System™',
+        features: [
+          'StressRelief Neck and Shoulder Seat™',
+          'Master Blaster® Foot Massage Therapy',
+          'Master Force™ Bio-Magnetic Therapy System',
+          'Vac-Formed ABS Pan Bottom',
+          'WiFi Module',
+          'Secondary Remote',
+          'Deluxe Tapered Cover',
+        ],
       },
       {
         slug: 'lsx-800',

@@ -132,7 +132,12 @@ const heroAlt = `${seriesData.brand} ${seriesData.name} hot tub`;
       </div>
       <div class="model-grid">
         {seriesData.models?.map((m) => (
-          <ModelCard model={m} image={seriesData.hero} imageAlt={`${seriesData.brand} ${m.name} hot tub`} />
+          <ModelCard
+            model={m}
+            image={seriesData.hero}
+            imageAlt={`${seriesData.brand} ${m.name} hot tub`}
+            href={`/hot-tubs/${seriesData.slug}/${m.slug}/`}
+          />
         ))}
       </div>
     </div>
