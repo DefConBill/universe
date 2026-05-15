@@ -16,6 +16,7 @@ export type Model = {
 
   // Assets
   image?: string;             // hero photo path under /public, e.g. /images/model-lsx-700.jpg
+  downShot?: string;          // top-down interior layout image, e.g. /images/downshot-lsx-700.jpg
   pdfUrl?: string;            // feature sheet path, e.g. /pdfs/feature-sheet-lsx-700.pdf
 
   // Specs (all optional — fill in what's available per model)
@@ -126,6 +127,7 @@ export const series: Series[] = [
         longDescription:
           "Experience effortless refinement with a hot tub designed with your well-being in mind. From the exclusive StressRelief Neck and Shoulder Seat™ to the soothing foot therapy feature, the LSX 700 is crafted down to the smallest detail for ultimate relaxation and lasting comfort. With 62 powerful, precisely placed jets, every seat delivers the perfect balance of luxury and performance.",
         image: '/images/model-lsx-700.jpg',
+        downShot: '/images/downshot-lsx-700.jpg',
         pdfUrl: '/pdfs/feature-sheet-lsx-700.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,

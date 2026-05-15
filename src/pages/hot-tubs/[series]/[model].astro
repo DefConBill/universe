@@ -190,6 +190,22 @@ const pageDescription = modelData.longDescription
     </section>
   )}
 
+  <!-- Down shot (interior layout) -->
+  {modelData.downShot && (
+    <section class="block cream">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">Interior Layout</div>
+          <h2>Top view of the {modelData.name}.</h2>
+          <p>See where the jets, lounge, and seats sit before you climb in.</p>
+        </div>
+        <div class="downshot">
+          <img src={modelData.downShot} alt={`Top-down view of the ${seriesData.brand} ${modelData.name} showing interior seating and jet layout`} loading="lazy" />
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Quote CTA -->
   <section class="block">
     <div class="container">
