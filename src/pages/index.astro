@@ -68,24 +68,48 @@ const swimSpas = [
   },
 ];
 
+// Real five-star reviews from the Hot Tub Universe Google Business Profile.
+// Attributed first name + last initial. Lightly edited for typos/length only —
+// wording and meaning preserved. NOT marked up with Review schema (Google
+// prohibits self-hosted schema for reviews collected on another platform).
+const GOOGLE_REVIEWS_URL = ''; // ← paste the Google reviews link here to show the button
+
 const testimonials = [
   {
-    quote: '"The team didn\'t try to upsell us. They asked about our backyard, our family, and how we\'d actually use it — then walked us through three options. We\'ve had ours for two winters now and it\'s been bulletproof."',
-    name: 'Sarah M.',
-    meta: 'Bedford · Twilight Series owner',
-    initials: 'SM',
+    quote: '"We highly recommend Hot Tub Universe to anyone who values honesty, integrity, and exceptional service. Theresa and team have been an absolute pleasure to deal with — all the way from the buying experience through coming to our home on three separate occasions to help us get familiar with the tub. PS: they also answer their phone, which is rare these days."',
+    name: 'Andrew W.',
+    meta: 'Hot tub owner',
+    initials: 'AW',
   },
   {
-    quote: '"Called on a Saturday morning when our pump failed. They had a tech here that afternoon, fixed it within an hour, and didn\'t oversell us on parts. Hard to find that kind of service anymore."',
-    name: 'James K.',
-    meta: 'Dartmouth · Service customer',
-    initials: 'JK',
+    quote: '"I have been using this store for over a year, as my new hot tub is the brand they sell, and they have been amazing. The service is so good I will never buy anywhere else. They have a tech named Dillon who is great, but Theresa and the other ladies like Michelle are so helpful too. Thanks for the emergency visit to help me with a problem!"',
+    name: 'Claude H.',
+    meta: 'Hot tub owner · long-time customer',
+    initials: 'CH',
   },
   {
-    quote: '"I trained for my marathon in our Michael Phelps swim spa through a Halifax winter. Bonkers good investment. The install crew were professional, on-time, and cleaned up after themselves."',
-    name: 'Lauren P.',
-    meta: 'Sackville · Michael Phelps swim spa owner',
-    initials: 'LP',
+    quote: '"Highly recommend Hot Tub Universe! We had some timing issues getting the hot tub delivered and set up, but Theresa and her staff went above and beyond to make things right. Exceptional customer service and product knowledge. Greatly appreciated!"',
+    name: 'Kelly B.',
+    meta: 'Hot tub owner',
+    initials: 'KB',
+  },
+  {
+    quote: '"We met Theresa and her team at the home show and purchased a Master Spa. The support and customer service is the best I\'ve ever experienced. They know their stuff, and I\'m never afraid to ask a question no matter how silly it may seem. Can\'t say enough positive about this company."',
+    name: 'Wooden Rose Auctions',
+    meta: 'Master Spas owner',
+    initials: 'WR',
+  },
+  {
+    quote: '"We LOVE our new hot tub! It can be somewhat overwhelming purchasing one — choices, brands, models, features, warranty, chemicals, budgets. Rhonda, Michelle and Theresa were all fantastic: professional, knowledgeable, and attentive to every question, both while choosing the right model and after delivery. Thank you for truly caring about your customers."',
+    name: 'Smitty',
+    meta: 'Twilight Series owner',
+    initials: 'S',
+  },
+  {
+    quote: '"Fabulous place to buy your hot tub or swim spa, as I did! Quality products. The owner and her team know their stuff and truly do their best to provide second-to-none service. They also have an online store for accessories and chemicals to order and pick up. I highly recommend this company."',
+    name: 'Roz',
+    meta: 'Hot tub & swim spa customer',
+    initials: 'R',
   },
 ];
 
@@ -183,11 +207,16 @@ const areas = [
       <div class="section-head">
         <div class="section-eyebrow">What Customers Say</div>
         <h2>People who actually own one.</h2>
-        <p>Real reviews from real HRM customers. Placeholder text — to be replaced with reviews Bill selects.</p>
+        <p>Verified five-star reviews from our Google Business Profile — real HRM customers, in their own words.</p>
       </div>
       <div class="testimonial-grid">
         {testimonials.map((t) => <TestimonialCard {...t} />)}
       </div>
+      {GOOGLE_REVIEWS_URL && (
+        <div class="testimonial-cta">
+          <a class="btn btn-secondary" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">Read more reviews on Google</a>
+        </div>
+      )}
     </div>
   </section>
 
