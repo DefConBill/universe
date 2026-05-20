@@ -195,6 +195,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Redefine backyard living with the H2X Challenger 21D. This dual-zone swim spa design provides an expansive swim area, a separate hot tub section, and an integrated sun lounge. Offering the benefits of a pool with the therapy of a hot tub, this 21-foot swim spa is the perfect spot for swimming in place, water exercise, recreation, and relaxation. Personalize your sessions with independent temperature controls, adjustable jets, and LED lighting.",
             image: '/images/model-challenger-21-d.jpg',
+            downShot: '/images/downshot-challenger-21-d.jpg',
             pdfUrl: '/pdfs/feature-sheet-challenger-21-d.pdf',
             dimensions: '257" x 94" x 60"',
             dimensionsMetric: '653 cm x 239 cm x 153 cm',
@@ -216,6 +217,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Get more with the H2X Challenger 19D MAX. With the largest swim area of any H2X swim spa, this 19-foot model is perfect for swimming in place, water exercise, or an afternoon of relaxation. The variable speed current meets you at your fitness level, whether you want a challenging workout or recovery session. After a workout, enjoy the relaxation and rejuvenation of the contoured hot tub seats with built-in massage jets and the Xtreme Therapy Cove.",
             image: '/images/model-challenger-19-d-max.jpg',
+            downShot: '/images/downshot-challenger-19-d-max.jpg',
             pdfUrl: '/pdfs/feature-sheet-challenger-19-d-max.pdf',
             dimensions: '231" x 94" x 60"',
             dimensionsMetric: '587 cm x 239 cm x 153 cm',
@@ -237,6 +239,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Train, recover, and relax in the comfort of your backyard with the H2X Challenger 15D. With an obstacle-free swim area, you can swim, exercise, and enjoy quality time with your family. Updated for 2025, the airless swim current delivers a superior swim experience that you can adjust based on your goals and fitness level. Seamlessly combining the benefits of a pool with a hot tub, this 15-foot swim spa features strategically placed massage jets that can be adjusted for your needs.",
             image: '/images/model-challenger-15-d.jpg',
+            downShot: '/images/downshot-challenger-15-d.jpg',
             pdfUrl: '/pdfs/feature-sheet-challenger-15-d.pdf',
             dimensions: '180" x 94" x 60"',
             dimensionsMetric: '458 cm x 239 cm x 153 cm',
@@ -266,6 +269,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Redefine outdoor living with the H2X Trainer 21D. Featuring an innovative pool-spa configuration with a spacious swim area, dedicated hot tub section, and integrated sun lounge, the Trainer 21D delivers at-home water exercise alongside ergonomic hot tub relaxation. Personalize each session with independent temperature controls, adjustable air-injected VIP jets, and mood-setting LED lighting. The deeper 21-foot footprint makes it ideal for full-body swim training and aquatic exercise.",
             image: '/images/model-trainer-21-d.jpg',
+            downShot: '/images/downshot-trainer-21-d.jpg',
             pdfUrl: '/pdfs/feature-sheet-trainer-21-d.pdf',
             dimensions: '257" x 94" x 51"',
             dimensionsMetric: '653 cm x 239 cm x 130 cm',
@@ -287,6 +291,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Redefine outdoor living with the H2X Trainer 21. Featuring an innovative pool-spa, this 21-foot swim spa has a spacious swim area, dedicated hot tub section, and integrated sun lounge. Realize the benefits of at-home water exercise or simply unwind in the ergonomic hot tub seats. Enjoy personalized comfort with independent temperature controls, adjustable jets, and mood-setting LED lighting.",
             image: '/images/model-trainer-21.jpg',
+            downShot: '/images/downshot-trainer-21.jpg',
             pdfUrl: '/pdfs/feature-sheet-trainer-21.pdf',
             dimensions: '257" x 94" x 51"',
             dimensionsMetric: '653 cm x 239 cm x 130 cm',
@@ -308,6 +313,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "All new for 2025, the H2X Trainer 19D MAX features a sleek, modern design and innovative features that elevate outdoor living. This 19-foot swim spa is ideal for recreational swimming, aquatic exercise, and family fun. The VIP Technology improves the swim experience, creating a smoother flow of water that you can easily adjust based on your fitness level. Combining the benefits of a pool with the therapy of a hot tub, you can also unwind and relax in one of the contoured seats.",
             image: '/images/model-trainer-19-d-max.jpg',
+            downShot: '/images/downshot-trainer-19-d-max.jpg',
             pdfUrl: '/pdfs/feature-sheet-trainer-19-d-max.pdf',
             dimensions: '231" x 94" x 60"',
             dimensionsMetric: '587 cm x 239 cm x 153 cm',
@@ -329,6 +335,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "The perfect backyard upgrade for people who want to swim, exercise, and spend time with family. Easier to maintain and with a smaller footprint than a traditional pool, the all-new H2X Trainer 15D is an ideal alternative. Premium massage jets and ergonomic seating offer the perfect place to unwind. The deeper 60-inch build supports full-body swim training in a backyard-friendly footprint.",
             image: '/images/model-trainer-15-d.jpg',
+            downShot: '/images/downshot-trainer-15-d.jpg',
             pdfUrl: '/pdfs/feature-sheet-trainer-15-d.pdf',
             dimensions: '180" x 94" x 60"',
             dimensionsMetric: '458 cm x 239 cm x 153 cm',
@@ -350,6 +357,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Create the backyard oasis you have been dreaming of. The redesigned H2X Trainer 15 offers less maintenance than a traditional pool and year-round use. The spacious swim area is ideal for recreational swimming, water exercise, and family fun. Features including massage jets, waterfalls, and LED lighting invite ultimate relaxation. A great middle-of-the-road Trainer for fitness without the deepest swim profile.",
             image: '/images/model-trainer-15.jpg',
+            downShot: '/images/downshot-trainer-15.jpg',
             pdfUrl: '/pdfs/feature-sheet-trainer-15.pdf',
             dimensions: '180" x 94" x 51"',
             dimensionsMetric: '458 cm x 239 cm x 130 cm',
@@ -371,6 +379,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "Create your backyard sanctuary with the space-conscious H2X Trainer 12 swim spa. Perfect for small backyards, this 12-foot swim spa brings home the benefits of water exercise, relaxation, and family fun. Premium massage jets, calming waterfalls, and LED lighting create an inviting space. The most compact H2X model — fits where a traditional pool or larger swim spa simply won't.",
             image: '/images/model-trainer-12.jpg',
+            downShot: '/images/downshot-trainer-12.jpg',
             pdfUrl: '/pdfs/feature-sheet-trainer-12.pdf',
             dimensions: '144" x 94" x 51"',
             dimensionsMetric: '366 cm x 239 cm x 130 cm',
@@ -400,6 +409,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "The largest model in the Therapool Series, the Therapool 15 is a great alternative to a backyard pool and can be used year-round. It has an uninhibited exercise area and features 28 jets with two high-performance flow stream jets for resistance training and aquatic exercise. It comes standard with the H2Xercise™ Fitness System for rowing and strength training.",
             image: '/images/model-therapool-15.jpg',
+            downShot: '/images/downshot-therapool-15.jpg',
             pdfUrl: '/pdfs/feature-sheet-therapool-15.pdf',
             dimensions: '180" x 90" x 51"',
             dimensionsMetric: '458 cm x 229 cm x 130 cm',
@@ -421,6 +431,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "The second-largest model in the Therapool Series, the Therapool 13 has an uninhibited exercise area and therapy seating for the ultimate in wellness. It has 28 jets with two high-performance flow stream jets for resistance training and aquatic exercise. The standard H2Xercise™ Fitness System supports rowing and strength training. Whether you want to exercise or simply relax, this is the perfect swim spa to re-energize your wellness routine and backyard.",
             image: '/images/model-therapool-13.jpg',
+            downShot: '/images/downshot-therapool-13.jpg',
             pdfUrl: '/pdfs/feature-sheet-therapool-13.pdf',
             dimensions: '156" x 90" x 48"',
             dimensionsMetric: '397 cm x 229 cm x 122 cm',
@@ -442,6 +453,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "The Therapool D measures close to 8 ft × 11 ft and has a massive 60-inch depth. It packs more than 50 jets with three high-performance flow stream jets for resistance training and aquatic exercise. The standard H2Xercise™ Fitness System supports rowing and strength training, alongside waterline LED lighting, a waterfall, and stainless steel jets. The Therapool D is the perfect swim spa for exercise, fitness, and family fun.",
             image: '/images/model-therapool-d.jpg',
+            downShot: '/images/downshot-therapool-d.jpg',
             pdfUrl: '/pdfs/feature-sheet-therapool-d.pdf',
             dimensions: '132" x 94" x 60"',
             dimensionsMetric: '336 cm x 239 cm x 153 cm',
@@ -463,6 +475,7 @@ export const swimSpas: Series[] = [
             longDescription:
               "This fitness spa is loaded with high-end features but at a surprisingly affordable price. The large flat floor is perfect for aquatic exercise and rehabilitation, while three high-performance flow stream jets provide a current for walking or running in place. At the end of your workout, slip into one of the ergonomic seats, letting the hydrotherapy jets help you recover and relax.",
             image: '/images/model-therapool-se.jpg',
+            downShot: '/images/downshot-therapool-se.jpg',
             pdfUrl: '/pdfs/feature-sheet-therapool-se.pdf',
             dimensions: '132" x 94" x 51"',
             dimensionsMetric: '336 cm x 239 cm x 130 cm',

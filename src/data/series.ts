@@ -267,6 +267,7 @@ export const series: Series[] = [
         longDescription:
           "The LSX 30 celebrates three decades of innovation and craftsmanship. Reintroducing the whirlpool-style therapy seat, this model combines the nostalgia of a classic with the precision of modern technology. A variable-speed motor allows you to personalize your massage experience — from gentle relaxation to deep-tissue relief — and even create custom programs tailored to your needs. With a full-size lounge and premium features, this spa delivers the ultimate in comfort, recovery, and performance.",
         image: '/images/model-lsx-30.jpg',
+            downShot: '/images/downshot-lsx-30.jpg',
         pdfUrl: '/pdfs/feature-sheet-lsx-30.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
@@ -485,6 +486,7 @@ export const series: Series[] = [
         longDescription:
           "A space-saving hot tub that is big on relaxation, the TS 67.25 offers the best in hydrotherapy. This five-person spa features premium massage jets, including the Master Blaster Foot Therapy, cascading waterfall, and brilliant LED lighting. The modern design and all-weather cabinet will help you create your dream backyard oasis.",
         image: '/images/model-ts-67-25.jpg',
+            downShot: '/images/downshot-ts-67-25.jpg',
         pdfUrl: '/pdfs/feature-sheet-ts-67-25.pdf',
         seating: 'Seats 5',
         seatingCapacity: 5,
