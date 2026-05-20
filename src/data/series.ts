@@ -323,7 +323,7 @@ export const series: Series[] = [
     brand: 'Master Spas',
     name: 'Twilight Series',
     shortName: 'Twilight',
-    tagline: 'Where every soak feels like a getaway.',
+    tagline: 'Twilight Spas deliver a spa experience where relaxation meets refinement.',
     description:
       "The Twilight Series offers a curated balance of luxury and approachability — refined design, exclusive features, and a quietly powerful hydrotherapy experience tuned for everyday relaxation rather than aggressive therapy.",
     hero: '/images/series-twilight.jpg',
@@ -847,7 +847,7 @@ export const series: Series[] = [
     brand: 'Master Spas',
     name: 'LH Series',
     shortName: 'LH',
-    tagline: 'Purposeful relief. Enhanced wellness.',
+    tagline: 'With the LH Series, you can enjoy a spa experience that makes every day easier.',
     description:
       "Slip into a world of benefits that will help to improve your quality of life through purposeful relief and enhanced wellness. The LH series focuses on the therapeutic essentials — accessible pricing, dependable performance, and hydrotherapy that matters.",
     hero: '/images/series-lh.jpg',
