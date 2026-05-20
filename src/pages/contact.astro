@@ -39,10 +39,13 @@ const contactPageJsonLd = {
 // Submissions route to theresa@ (primary, set in the Web3Forms dashboard) + CC michelle@ and ally@.
 const WEB3FORMS_ACCESS_KEY = '64c66dda-901f-4cec-a257-bd67131451f5';
 
-// Quote request recipients:
-//   Primary = the email the access_key is registered to (theresa@)
-//   CC      = additional recipients that get the same email thread
-const QUOTE_CC_RECIPIENTS = 'michelle@hottubuniverse.ca,ally@hottubuniverse.ca';
+// Quote request routing:
+//   Primary recipient = theresa@ — set as the "To Email" in the Web3Forms dashboard.
+//   CC is set DYNAMICALLY by the submit handler based on the "interest" dropdown:
+//     - Service / Watercare → CC kattia@
+//     - Everything else (sales) → CC michelle@ OR ally@ (random 50/50 split)
+//   The value below is only the NO-JAVASCRIPT fallback (CC everyone so no lead is missed).
+const FALLBACK_CC_RECIPIENTS = 'michelle@hottubuniverse.ca,ally@hottubuniverse.ca,kattia@hottubuniverse.ca';
 ---
 <BaseLayout
   title="Request a Quote | Hot Tub Universe — Bedford NS"
@@ -95,7 +98,7 @@ const QUOTE_CC_RECIPIENTS = 'michelle@hottubuniverse.ca,ally@hottubuniverse.ca';
             <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
             <input type="hidden" name="subject" value="Hot Tub Universe — Quote Request" />
             <input type="hidden" name="from_name" value="Hot Tub Universe — Web Form" />
-            <input type="hidden" name="cc" value={QUOTE_CC_RECIPIENTS} />
+            <input type="hidden" name="cc" value={FALLBACK_CC_RECIPIENTS} />
             <input type="hidden" name="redirect" value={`${siteOrigin}/contact/thanks/`} />
             <!-- Honeypot (spam protection) — bots fill this, humans don't see it -->
             <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
@@ -260,6 +263,21 @@ const QUOTE_CC_RECIPIENTS = 'michelle@hottubuniverse.ca,ally@hottubuniverse.ca';
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+
+        // --- CC routing based on what the visitor selected ---
+        // Service-side inquiries go to Kattia; everything else is a sales lead,
+        // split 50/50 between Michelle and Ally. Theresa is the primary recipient
+        // (set in the Web3Forms dashboard) and receives every submission.
+        var interest = data.interest || '';
+        var isService = (interest === 'Service or repair' || interest === 'Watercare & accessories');
+        if (isService) {
+          data.cc = 'kattia@hottubuniverse.ca';
+          data.routed_to = 'Service — Kattia';
+        } else {
+          var salesRep = Math.random() < 0.5 ? 'michelle@hottubuniverse.ca' : 'ally@hottubuniverse.ca';
+          data.cc = salesRep;
+          data.routed_to = 'Sales — ' + (salesRep.indexOf('michelle') === 0 ? 'Michelle' : 'Ally');
+        }
 
         try {
           const res = await fetch('https://api.web3forms.com/submit', {
