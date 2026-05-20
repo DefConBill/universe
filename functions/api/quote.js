@@ -66,22 +66,45 @@ export async function onRequestPost(context) {
 
   // Forward everything to Web3Forms, overriding the CC with our routed value.
   const payload = Object.assign({}, data, { ccemail: ccemail, routed_to: routedTo });
+  delete payload.redirect; // not needed on the JSON path; avoids any redirect-style response
 
-  let w3json;
-  let w3status = 200;
   try {
     const w3res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'User-Agent': 'HotTubUniverse-PagesFunction/1.0',
+      },
       body: JSON.stringify(payload),
     });
-    w3status = w3res.status;
-    w3json = await w3res.json();
-  } catch (e) {
-    return json({ success: false, message: 'Could not reach the mail service. Please try again or call 902-576-5115.' }, 502);
-  }
 
-  return json(w3json, w3status);
+    // Read as text first so a non-JSON response (e.g. an HTML page) doesn't throw.
+    const text = await w3res.text();
+    try {
+      const w3json = JSON.parse(text);
+      return json(w3json, w3res.status);
+    } catch (parseErr) {
+      return json(
+        {
+          success: false,
+          message: 'Mail service returned an unexpected response.',
+          debug: text.slice(0, 400),
+          upstreamStatus: w3res.status,
+        },
+        502
+      );
+    }
+  } catch (e) {
+    return json(
+      {
+        success: false,
+        message: 'Could not reach the mail service. Please try again or call 902-576-5115.',
+        debug: String((e && e.message) || e),
+      },
+      502
+    );
+  }
 }
 
 function json(body, status) {
