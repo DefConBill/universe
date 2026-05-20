@@ -280,13 +280,34 @@ const FALLBACK_CC_RECIPIENTS = 'michelle@hottubuniverse.ca; ally@hottubuniverse.
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+        // 'redirect' is only for the no-JS native form submit; on the JSON
+        // path Web3Forms returns JSON, so drop it to keep the request clean.
+        delete data.redirect;
 
-        // Routing (category + strict Michelle/Ally round-robin) is handled
-        // server-side by /api/quote, which forwards to Web3Forms. Keeping it on
-        // the server is what makes the alternation consistent across all visitors.
-
+        // Step 1: ask our Pages Function who this lead should be CC'd to.
+        // It owns the category logic + strict Michelle/Ally round-robin (KV
+        // counter), so alternation stays consistent across all visitors. We do
+        // NOT forward to Web3Forms from the function — Cloudflare blocks
+        // worker-to-worker subrequests (error 1106). The browser submits below.
         try {
-          const res = await fetch('/api/quote', {
+          const routeRes = await fetch('/api/quote', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ interest: data.interest || '' }),
+          });
+          const route = await routeRes.json();
+          if (route && route.ccemail) {
+            data.ccemail = route.ccemail;
+            data.routed_to = route.routed_to || '';
+          }
+        } catch (routeErr) {
+          // Routing call failed — keep the form's fallback ccemail (all three)
+          // so the lead is never lost. Submission still proceeds below.
+        }
+
+        // Step 2: submit directly to Web3Forms from the browser.
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(data),

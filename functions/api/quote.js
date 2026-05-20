@@ -1,24 +1,30 @@
 /**
  * Cloudflare Pages Function — POST /api/quote
  *
- * Receives the Request-a-Quote form submission, applies routing, then forwards
- * to Web3Forms. Theresa is always the primary recipient (set on the Web3Forms
- * access key). This function only decides the CC:
+ * Decides who the quote should be CC'd to and returns that decision to the
+ * browser. The browser then submits the form to Web3Forms directly.
  *
+ * Why not forward to Web3Forms from here? Web3Forms' API runs on Cloudflare
+ * Workers, and Cloudflare blocks a Pages Function from making a server-side
+ * subrequest to another Cloudflare Worker (HTTP 403, "error code: 1106"). So
+ * this function owns ONLY the routing decision; the actual mail submission is
+ * a normal browser → Web3Forms request, which Cloudflare allows.
+ *
+ * Routing:
  *   - Service / Watercare & accessories  → CC kattia@
  *   - Everything else (sales lead)        → CC michelle@ / ally@ in STRICT
  *                                            alternation via a KV counter
  *
  * KV binding required: QUOTE_KV  (set in Pages project → Settings → Functions →
  * KV namespace bindings). If the binding is missing, it gracefully falls back to
- * a random 50/50 split so a lead is never lost.
+ * a random 50/50 split so alternation still happens.
  */
 
 export async function onRequestPost(context) {
   const { request, env } = context;
 
   // Parse the submission. The site's JS sends JSON; tolerate form-encoded too.
-  let data;
+  let data = {};
   try {
     data = await request.json();
   } catch (e) {
@@ -26,7 +32,8 @@ export async function onRequestPost(context) {
       const fd = await request.formData();
       data = Object.fromEntries(fd.entries());
     } catch (e2) {
-      return json({ success: false, message: 'Could not read submission.' }, 400);
+      // No body / unreadable — fall through with empty data (treated as sales).
+      data = {};
     }
   }
 
@@ -64,47 +71,9 @@ export async function onRequestPost(context) {
     }
   }
 
-  // Forward everything to Web3Forms, overriding the CC with our routed value.
-  const payload = Object.assign({}, data, { ccemail: ccemail, routed_to: routedTo });
-  delete payload.redirect; // not needed on the JSON path; avoids any redirect-style response
-
-  try {
-    const w3res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'User-Agent': 'HotTubUniverse-PagesFunction/1.0',
-      },
-      body: JSON.stringify(payload),
-    });
-
-    // Read as text first so a non-JSON response (e.g. an HTML page) doesn't throw.
-    const text = await w3res.text();
-    try {
-      const w3json = JSON.parse(text);
-      return json(w3json, w3res.status);
-    } catch (parseErr) {
-      return json(
-        {
-          success: false,
-          message: 'Mail service returned an unexpected response.',
-          debug: text.slice(0, 400),
-          upstreamStatus: w3res.status,
-        },
-        502
-      );
-    }
-  } catch (e) {
-    return json(
-      {
-        success: false,
-        message: 'Could not reach the mail service. Please try again or call 902-576-5115.',
-        debug: String((e && e.message) || e),
-      },
-      502
-    );
-  }
+  // Return the routing decision. The browser injects this ccemail and submits
+  // the full form to Web3Forms itself.
+  return json({ success: true, ccemail: ccemail, routed_to: routedTo });
 }
 
 function json(body, status) {
