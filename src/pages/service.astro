@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Service', item: `${siteOrigin}/service/` },
+  ],
+};
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Hot tub and swim spa repair and maintenance',
+  provider: {
+    '@type': 'HotTubStore',
+    name: 'Hot Tub Universe',
+    telephone: '+1-902-576-5115',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '20 Duke Street, Unit 109',
+      addressLocality: 'Bedford',
+      addressRegion: 'NS',
+      postalCode: 'B4A 2Z5',
+      addressCountry: 'CA',
+    },
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Halifax Regional Municipality',
+  },
+  description:
+    'Repair and maintenance for hot tubs and swim spas of any make and model across Halifax Regional Municipality — pumps, heaters, leaks, electronics, covers, and water care.',
+};
+
+const faqs = [
+  {
+    q: 'Do you service hot tubs you didn\'t sell?',
+    a: 'Yes. Our technicians are trained across every major hot tub and swim spa brand — Master Spas, Jacuzzi, Hydropool, Sundance, Arctic Spas, Beachcomber, and more. If you bought it somewhere else (or inherited it with a house), we can still service it.',
+  },
+  {
+    q: 'How fast can you come out?',
+    a: 'It depends on your location in HRM and current demand, but most service calls happen within 2–4 days. Bedford and the close-in Sackville areas are usually fastest; east-of-Dartmouth communities like Cole Harbour and Eastern Passage are typically 3–4 days as we batch those trips.',
+  },
+  {
+    q: 'What does a service call cost?',
+    a: 'A service call includes a diagnostic visit, and we quote any parts or labour before doing the work — no surprise charges. Give us a call or send a service request and we\'ll walk you through it.',
+  },
+  {
+    q: 'Can you replace my hot tub cover?',
+    a: 'Yes. We order replacement covers for most makes and models. A worn or waterlogged cover is one of the biggest hidden drivers of high energy bills, so it\'s often the first thing worth replacing.',
+  },
+  {
+    q: 'Do you help with water care and chemistry?',
+    a: 'Absolutely. Cloudy water, balance problems, or you just want a simpler routine — we diagnose water care issues and stock the products to fix them. Watercare and accessories are available through our online shop.',
+  },
+  {
+    q: 'My tub is leaking / won\'t heat / the pump is loud. Can you fix it?',
+    a: 'Those are three of the most common calls we get, and yes — leaks, heater faults, and pump issues are bread-and-butter repairs for our team. Send us the details and we\'ll come diagnose it.',
+  },
+];
+---
+<BaseLayout
+  title="Hot Tub & Swim Spa Repair and Service in Halifax | Hot Tub Universe"
+  description="Hot Tub Universe services any make or model of hot tub or swim spa across Halifax & HRM — pumps, heaters, leaks, electronics, covers, and water care. Bedford-based, on the road daily."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) })} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">Service</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="model-hero">
+    <div class="container">
+      <div class="model-hero-inner">
+        <div class="model-hero-content">
+          <div class="model-hero-brand">Repairs &amp; Service</div>
+          <h1>We service any hot tub or swim spa in HRM.</h1>
+          <p class="model-hero-desc">Even if you didn't buy it from us. Our technicians repair every major brand — pumps, heaters, leaks, electronics, covers, and water care. We're Bedford-based and on the road across Halifax Regional Municipality every day, keeping hundreds of HRM hot tubs running.</p>
+          <div class="hero-ctas" style="margin-top: 32px;">
+            <a href="/contact/?interest=service" class="btn btn-primary">
+              Book a Service Call
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="tel:9025765115" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              902-576-5115
+            </a>
+          </div>
+        </div>
+        <div class="model-hero-image">
+          <img src="/images/service-photo.jpg" alt="Hot Tub Universe service van — locally owned and operated, 902-576-5115" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we service -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">What we service</div>
+        <h2>Any tub, any brand, any component.</h2>
+        <p>We're a full-service dealer — not just a sales floor. If it holds water and heats up, we can probably fix it.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card" style="text-align: left;">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3>Hot tubs — every major brand</h3>
+          <p>Master Spas, Jacuzzi, Hydropool, Sundance, Arctic Spas, Beachcomber, and more. We don't only service what we sell.</p>
+        </div>
+        <div class="why-card" style="text-align: left;">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></div>
+          <h3>Swim spas</h3>
+          <p>H2X, Michael Phelps, and other swim spa brands — propulsion systems, dual-zone controls, jets, and seating.</p>
+        </div>
+        <div class="why-card" style="text-align: left;">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3>Components &amp; parts</h3>
+          <p>Pumps, heaters, jets, control packs, ozonators, circuit boards, and covers — diagnosed, repaired, or replaced.</p>
+        </div>
+        <div class="why-card" style="text-align: left;">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+          <h3>Water care &amp; diagnostics</h3>
+          <p>Cloudy water, balance problems, or a routine you want simplified — we diagnose it and stock the fix.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common repairs -->
+  <section class="block">
+    <div class="container city-prose">
+      <div class="section-eyebrow">Common repairs</div>
+      <h2>The calls we get most.</h2>
+      <ul class="features-list" style="margin-top: 8px;">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Pump won't start, won't prime, or is running loud</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Water won't heat, or the heater throws a fault code</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Leaks — from plumbing, jets, or the equipment bay</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Control panel errors and electronic / circuit board issues</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Cloudy, foamy, or chronically unbalanced water</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Worn or waterlogged covers (a hidden energy-bill culprit)</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Jet repair and replacement</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Why our service -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Why our service</div>
+        <h2>Service that actually shows up.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+          <h3>Locally owned, locally based</h3>
+          <p>Our techs work out of Bedford — not a national dispatch centre. When you call, you reach the people who do the work.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>40+ years combined</h3>
+          <p>Decades of factory and field training across every major brand. We've seen your problem before.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+          <h3>We stand behind the work</h3>
+          <p>We quote before we fix, use quality parts, and back what we do. No upsell pressure, no surprise invoices.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>Across all of HRM</h3>
+          <p>Bedford, Halifax, Dartmouth, Sackville, Cole Harbour, Eastern Passage and beyond. <a href="/areas-we-serve/" style="color: var(--orange); font-weight: 600;">See areas we serve →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Water care cross-sell -->
+  <section class="block">
+    <div class="container">
+      <div class="service-callout">
+        <div>
+          <div class="section-eyebrow" style="color: var(--sky);">Watercare &amp; Accessories</div>
+          <h2>Keep your water right between service calls.</h2>
+          <p>Sanitizer, balancers, filters, test strips, cover lifters, steps, and more — everything to keep your tub clean and running well. Shop our full watercare and accessories range online.</p>
+          <div class="service-callout-actions">
+            <a href="https://hottubuniverse.myshopify.com/" rel="noopener" target="_blank" class="btn btn-primary">Shop Watercare &amp; Accessories</a>
+            <a href="/contact/?interest=watercare" class="btn btn-outline">Ask a Water Care Question</a>
+          </div>
+        </div>
+        <div class="service-callout-visual">
+          <img src="/images/service-photo.jpg" alt="Hot Tub Universe service van on the road across HRM" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block cream">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Common Questions</div>
+        <h2>Service FAQs.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>
+              <span>{f.q}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="block">
+    <div class="container">
+      <div class="quote-callout">
+        <div>
+          <div class="section-eyebrow" style="color: var(--sky);">Need a repair?</div>
+          <h2>Book a service call.</h2>
+          <p>Tell us the make, model (if you know it), and what's going wrong. We'll get back to you within one business day to schedule a visit.</p>
+        </div>
+        <div class="quote-callout-actions">
+          <a href="/contact/?interest=service" class="btn btn-primary">Request Service</a>
+          <a href="tel:9025765115" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            902-576-5115
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

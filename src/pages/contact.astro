@@ -251,6 +251,22 @@ const FALLBACK_CC_RECIPIENTS = 'michelle@hottubuniverse.ca,ally@hottubuniverse.c
       const submitBtn = document.getElementById('submit-btn');
       if (!form || !status || !submitBtn) return;
 
+      // Pre-select the interest dropdown from a ?interest= query param
+      // (e.g. links from the service page use /contact/?interest=service)
+      var params = new URLSearchParams(window.location.search);
+      var interestParam = params.get('interest');
+      if (interestParam) {
+        var interestMap = {
+          'hot-tubs': 'Hot tubs',
+          'swim-spas': 'Swim spas',
+          'service': 'Service or repair',
+          'watercare': 'Watercare & accessories',
+        };
+        var mapped = interestMap[interestParam.toLowerCase()];
+        var sel = document.getElementById('interest');
+        if (mapped && sel) sel.value = mapped;
+      }
+
       const btnLabel = submitBtn.querySelector('.btn-label');
       const originalLabel = btnLabel ? btnLabel.textContent : 'Send Request';
 
