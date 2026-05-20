@@ -203,6 +203,9 @@ section.block { padding: 96px 0; }
 section.block.alt { background: var(--ink-2); }
 section.block.cream { background: var(--cream); color: var(--body); }
 section.block.cream h1, section.block.cream h2, section.block.cream h3, section.block.cream h4 { color: var(--ink); }
+section.block.white { background: #FFFFFF; color: var(--body); }
+section.block.white h1, section.block.white h2, section.block.white h3, section.block.white h4 { color: var(--ink); }
+section.block.white .section-head p { color: var(--body); }
 .section-head { text-align: center; margin-bottom: 56px; max-width: 720px; margin-left: auto; margin-right: auto; }
 .section-eyebrow {
   display: inline-block;
