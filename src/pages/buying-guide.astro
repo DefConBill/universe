@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Buying Guide', item: `${siteOrigin}/buying-guide/` },
+  ],
+};
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Hot Tub Buyer’s Guide: What Actually Matters',
+  description:
+    'What actually matters when buying a hot tub: the shell, plumbing, jets, OEM components, and insulation. Independent advice from a Halifax dealer with decades in the industry.',
+  author: { '@type': 'Organization', name: 'Hot Tub Universe' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Hot Tub Universe',
+    logo: { '@type': 'ImageObject', url: `${siteOrigin}/images/logo-black.png` },
+  },
+  mainEntityOfPage: `${siteOrigin}/buying-guide/`,
+};
+
+// The five things that make a solid, decades-lasting hot tub.
+const criteria = [
+  { id: 'shell', label: 'A self-supporting shell' },
+  { id: 'plumbing', label: 'Glued AND clamped plumbing lines' },
+  { id: 'jets', label: 'Compression fit jets' },
+  { id: 'oem', label: 'Quality OEM components' },
+  { id: 'insulation', label: 'Full foam open-cell insulation' },
+];
+---
+<BaseLayout
+  title="Hot Tub Buyer’s Guide — What Actually Matters | Hot Tub Universe"
+  description="What actually matters when buying a hot tub: the shell, plumbing, jets, OEM components, and insulation. Independent, no-nonsense advice from a Halifax dealer with decades in the industry."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">Buying Guide</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="city-hero">
+    <div class="container">
+      <div class="city-hero-inner">
+        <div class="section-eyebrow">Hot Tub Buyer's Guide</div>
+        <h1>How to buy a hot tub that lasts decades.</h1>
+        <p class="city-hero-tagline">Forget seating counts and fancy lighting for a minute. Here's what actually separates a hot tub that lasts twenty years from one that's leaking and cracking before the warranty's even cold — and exactly what to check before you buy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="block">
+    <div class="container city-prose">
+      <h2>Buying a hot tub is a nightmare.</h2>
+      <p class="city-intro">The truth is, there are so many side-track issues, exaggerations and outright misinformation perpetuated by manufacturers and retailers alike that even an intelligent, diligent researcher does not have a hope in hell of making an educated buying decision.</p>
+      <p class="city-intro">Part of the problem is a lot of the retailers don't really know that much about the hot tub industry or what really makes a great hot tub. For the most part, they are just regurgitating the pitch they got from the manufacturer when they bought the line of spas they are selling.</p>
+    </div>
+  </section>
+
+  <!-- What really matters + criteria list -->
+  <section class="block alt">
+    <div class="container city-prose">
+      <div class="section-eyebrow">The short version</div>
+      <h2>So what really matters?</h2>
+      <p class="city-intro">When you're shopping for a hot tub, you'll hear all about seating capacity, next-generation water chemistry, fancy lighting and a host of other things the salesperson will use to try to get you to buy. What you won't usually hear about are the most important things that comprise a solidly built hot tub.</p>
+      <p class="city-intro">There are five things which make for a solid hot tub that will last you for decades. Satisfy these five conditions and then, once you have narrowed it down to quality-built tubs, you can focus on other things like seating and lighting. You want:</p>
+      <ol class="criteria-list">
+        {criteria.map((c, i) => (
+          <li>
+            <a href={`#${c.id}`}>
+              <span class="criteria-num">{i + 1}</span>
+              <span>{c.label}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 1. Shell -->
+  <section class="block" id="shell">
+    <div class="container city-prose">
+      <div class="section-eyebrow">1 · The shell</div>
+      <h2>A strong, self-supporting shell.</h2>
+      <p class="city-intro">The vast majority of hot tub shells are made from layering acrylic over a stronger compound, such as fiberglass or polycarbonate. There are also shells which are made with rotationally molded plastic, but acrylic shells make up 90+ percent of what's out in the market. When an acrylic hot tub shell is made, it's heated in a huge oven and then vacuum formed into a mold to form the shape of the hot tub — and this acrylic sheet is incredibly thin and, by definition, incredibly weak, so the strength of the shell comes from the material that is bonded to the acrylic.</p>
+      <p class="city-intro">Fiberglass is still the most common backing used on hot tub shells, but not all fibreglass is created equally. Cheaper shells will have a single layer or two layers of fiberglass, whereas better-quality shells will usually use three layers, which is the most effective way to build a strong hot tub shell. Some manufacturers have had good luck using a polycarbonate backing on the acrylic, but regardless of which manufacturing process is used to create the shell, we want a strong shell that's going to last for decades.</p>
+      <p class="city-intro">The big problem is how to know whether you have a strong shell or not in the tub that you're looking at? That's where the term <em>self-supporting shell</em> comes from, and you'll hear us use this term quite a bit. A self-supporting shell simply means that the shell will support the body of water without collapsing, even if there are no extra supports under it. If you remove one or more sides from a hot tub and take a look — particularly underneath the seats — and you don't see any additional support blocks, or you don't see any portions of the frame coming up to support the shell, then you know this is a self-supporting shell, and by definition, it's a strong shell.</p>
+      <p class="city-intro">On the other hand, if you see support blocks of any type — whether they are wood, plastic, or even hard foam — or you see a support cradle, that means the shell itself is not strong enough to support the water load by itself. Keep in mind that we're not so much concerned about the supports themselves as we are about determining whether or not we have a strong shell, and this is the primary indicator.</p>
+      <p class="city-intro">If you have a weak shell, then you're very likely to experience some form of cracking in the shell within seven to ten years. Sometimes these cracks manifest themselves in a very clear way, but the far more common problem we see is micro-cracking. That means very tiny cracks, usually around the curves of the seat or, more frequently, around the jets. This cracking around the jets is known as spider-webbing, and it will result in a leak around the jet and will play havoc with the underside of your hot tub. It's going to cause wood frames to rot, steel frames to rust, and composite frames to warp. Unfortunately, there is no way to reliably repair these types of cracks, because there's simply not enough material in the shell.</p>
+      <p class="guide-takeaway"><strong>On the showroom floor:</strong> ask the salesperson to take one or two sides off the tub and look inside. If you see any form of support blocks under that shell, start looking at something else.</p>
+    </div>
+  </section>
+
+  <!-- 2. Plumbing -->
+  <section class="block alt" id="plumbing">
+    <div class="container city-prose">
+      <div class="section-eyebrow">2 · The plumbing</div>
+      <h2>Glued <em>and clamped</em> plumbing lines.</h2>
+      <p class="city-intro">If you are building a home, then at some point during construction a plumbing inspector will come and inspect the plumbing and, if they see any soft hose plumbing joints without clamps, the inspection will fail until clamps have been added to all soft lines. That's because the home building industry is regulated, so inspections are done pretty much every step of the way, and a core component of a properly built plumbing system is clamps at every joint where a softer-style hose is used.</p>
+      <p class="city-intro">The hot tub industry, on the other hand, is not regulated, so manufacturers can do pretty much anything they want — and that means that most manufacturers forego clamps on all the lines, knowing that glue alone will prevent leaks for the first 5–7 years until the warranty has expired. The problem with a lack of clamps is that, with hot water running through the hoses, the hoses are going to get softer and water will work its way up between the hose and the barbed fitting on the jet. Over time that will cause the glue between the hose and the jet fitting to break down, and in seven or eight years you'll be dealing with a leak. And keep in mind that every jet in a hot tub will have two joints, one at the manifold and one at the jet. So that means if you have a hot tub that has, for example, 40 jets, you have 80 potential leak points. On the other hand, a properly clamped line is never going to leak, because the line is crimped onto the jet fitting and there is no way that water is going to work its way past the clamp.</p>
+      <p class="city-intro">Some manufacturers have moved away from standard vinyl hose with clamps towards a product called Shur-Grip, and this is simply slightly more rigid hose with a spiral reinforcement. These hoses are better than unclamped vinyl — but make no mistake, even this type of hose without a clamp can't measure up to a properly clamped plumbing joint.</p>
+      <p class="guide-takeaway"><strong>On the showroom floor:</strong> tell the salesperson to pull a side off the hot tub and look for clamps on the hoses running from the manifolds to the jets. If you don't see spring-type clamps on all the joints, then you're looking at a tub which is going to leak at some point — so it's time to look somewhere else.</p>
+    </div>
+  </section>
+
+  <!-- 3. Jets -->
+  <section class="block" id="jets">
+    <div class="container city-prose">
+      <div class="section-eyebrow">3 · The jets</div>
+      <h2>Compression fit jets.</h2>
+      <p class="city-intro">For a very long time, all hot tub jets were made in a two-piece style. There was the jet itself, and then there was a large nut which held the jet in place. The jet was placed into the hole in the hot tub and sealed at the front with either silicone or a silicone-type gasket. Then there was a silicone bead placed around the jet on the back of the shell, and a large nut was put in place and tightened down, and you were depending on that silicone to provide a seal and stop the hot tub from leaking around the jet housing.</p>
+      <p class="city-intro">The problem with this type of seal is twofold. First, if you're not very good at maintaining your water chemistry, then the water will eat away at the silicone or the silicone gasket. But even if you are really good with your water chemistry, these jets will move during the operation of the hot tub. First of all, every time you turn the pumps on or off, the jet will receive a very slight nudge — just a little bump — due to the sudden pressure change of the water. This by itself doesn't cause a major problem, but over a number of years, with thousands of cycles of turning the pumps on and off, this is going to cause the silicone to eventually break down.</p>
+      <p class="city-intro">The other problem is that, in order to turn a hot tub jet on or off, you rotate the jet — and if you want to remove the jet from the housing for cleaning, you turn it even more, almost like opening a pill bottle: you push and turn to get the jet out of the housing. All this movement, combined with the tiny jolts from turning the pumps on and off, eventually cause enough silicone breakdown for the jet to leak. At some point you are going to experience jet-to-shell leaks, and once they start they will be constant. You may have one or two start to leak, and you'll have those repaired, and then in a few months' time others will start to leak, and it becomes a never-ending cycle.</p>
+      <p class="city-intro">About 10 years ago, a company named CMP developed a compression fit jet, and these have proven to be far, far more reliable than the older silicone-style jets. There is no threading on the jet, and it's not held in place by a large nut; instead, it's held in place by pressure. During construction, a thick polymer collar is placed into the hole that is cut for the jet, and then the jet is pressed into the collar, and once it's in place you end up with a perfect seal. These jets have two major advantages over the older two-piece jets. First of all, the polymer collars are impervious to poor water chemistry. But more importantly, if the jet happens to move because of the pumps turning on or off, or from turning the jet itself on or off, then the jet is going to seal itself.</p>
+      <p class="city-intro">One other advantage of compression fit jets — which is actually a double-edged sword from the manufacturer's point of view — is that compression fit jets require a strong shell. With the pressure required to press the jet into the collar, if the shell of the hot tub is weak, that amount of pressure is actually going to crack the shell. That's why a lot of manufacturers have not moved to compression fit jets, despite the fact that it's actually faster and more economical during the construction phase to build a hot tub with compression fit jets as opposed to the old two-piece style. They do cost the manufacturer a little bit more than the older-style two-piece jets, but the difference is more than made up by the reduced labor cost of installing them. The downside for the manufacturer is that, in order to use them, they have to build a stronger shell — and that costs money!</p>
+      <p class="guide-takeaway"><strong>On the showroom floor:</strong> remove one of the jets from the tub (or ask the salesperson to) and look around the jet body. The polymer collars of compression fit jets are typically a medium-gray color and slightly thicker than a two-piece jet using silicone. If you see that polymer color, you know it's a compression fit jet — and the added bonus is that you also know the tub has a strong shell. If it doesn't have them, you're likely looking at both an inferior jet system and a weak shell, so your best bet is to go shopping somewhere else.</p>
+    </div>
+  </section>
+
+  <!-- 4. OEM components -->
+  <section class="block alt" id="oem">
+    <div class="container city-prose">
+      <div class="section-eyebrow">4 · The components</div>
+      <h2>Quality OEM components.</h2>
+      <p class="city-intro">When you're out hot tub shopping, salespeople will often talk about patented this or revolutionary that, or some form of next-generation equipment. Usually what they're really saying is that the hot tub they're trying to sell you will cause you to be inextricably linked to that manufacturer for years to come.</p>
+      <p class="city-intro">Most hot tub manufacturers don't make the control systems, the pumps, the jets or even the lighting systems in a hot tub. The hot tub manufacturer will make the shell and the frame and then fill it with OEM components from third-party manufacturers like Balboa, Gecko, CMP and Waterways. This works to your advantage, because after the warranty, if your hot tub needs replacement parts, then those parts are both easy to find and inexpensive.</p>
+      <p class="city-intro">On the other hand, some manufacturers do create their own components, and they will spin this to you as being better. They will give you a bunch of marketing crap to try to convince you that their systems are somehow better or more advanced than the rest of the industry. The truth is, none of these revolutionary components can measure up to the quality of the OEM manufacturers who've been doing this for decades, and the only result is that you end up paying significantly more for replacement parts down the road.</p>
+      <p class="city-intro">You see this type of thing a lot when it comes to jets. You'll see terms like patented moto-massage or revolutionary power-pro jets, and they may seem like they will drastically improve the experience in the hot tub. The truth is, they provide very little benefit, but they will cost you a literal fortune when it comes time to replace one. One of these high-end jets can easily cost $300–$400, whereas a standard Waterways or CMP jet can be found online for 20 or 30 bucks.</p>
+      <p class="city-intro">The added danger of proprietary parts in a hot tub is that oftentimes manufacturers will stop using a given subsystem in their hot tubs and then stop making the components themselves. That means you could be stuck in a situation in 8–10 years where you can't even get replacement components.</p>
+      <p class="guide-takeaway"><strong>On the showroom floor:</strong> ask the salesperson about the components. If the tub uses proprietary components, salespeople will usually brag about it, so it's pretty easy to find out. Then ask yourself if you want to be married to this manufacturer and dealer for the next decade or two while they rake you over the coals for replacement parts.</p>
+    </div>
+  </section>
+
+  <!-- 5. Insulation -->
+  <section class="block" id="insulation">
+    <div class="container city-prose">
+      <div class="section-eyebrow">5 · The insulation</div>
+      <h2>Full foam open-cell insulation.</h2>
+      <p class="city-intro">One of the most common things you will hear from salespeople when you're hot tub shopping is that a full foam insulation system will make repairing a hot tub an absolute nightmare. This is one of the most frustrating things I hear about, because it does have a grain of truth in it, but it's really disingenuous. The truth is, a hot tub insulated with good-quality open-cell foam insulation is actually easier to repair than something with perimeter insulation. The key feature of quality open-cell foam is that it never hardens, so for example, if a service technician has to find a leak, then all he or she has to do is trace the wet foam, and that will lead them directly to the source of the leak. They can then repair the leak, remove the wet foam, and re-foam it.</p>
+      <p class="city-intro">Closed-cell foam, on the other hand, does make repairs a nightmare, simply because closed-cell foam will harden in a very short period of time. That not only makes removing the foam really difficult, but it also makes tracing leaks almost impossible, because water may leak from one area of the tub and run through gaps in the foam until it drips from the bottom of the foam, and the distance between the drip and the leak can often be measured in feet. That is the grain of truth that salespeople use against full foam in general, but with open-cell foam, it simply doesn't apply. Another reason some manufacturers use closed-cell foam is specifically because it hardens so much that they coat the back of the shell with it to provide extra rigidity for a weak shell.</p>
+      <p class="city-intro">OK, so if we have to be careful about what type of foam is used for insulation in hot tubs, why not avoid full foam systems completely? The short answer is that foam is not only more efficient but also does a far better job of protecting the equipment in a hot tub. Other types of insulation work by trapping the heat inside the skirting of the hot tub. That means that the electronic and mechanical components of the hot tub are also trapped inside that high-heat environment. You will even hear salespeople talk about reclaiming heat from the pumps to help with heating the hot tub, but think about that for a second. Any motor, such as the motor in your hot tub pumps, will generate heat — but in order to keep those motors healthy, that heat needs to be dissipated away from the motor. In the case of a perimeter insulation system, the motors are purposely kept inside the heat envelope to assist with heating, but that means that the motors can't properly cool. And the pump motors in a hot tub are simply not designed to run in an environment that hot.</p>
+      <p class="city-intro">As for R-value, yes, there are indeed perimeter insulation systems — especially the laser-cut systems that fit together extremely well — which can come close to the R-value of a full foam system. But the other side of that coin is that the better the insulation system is, the more heat is going to be trapped inside the skirt, and the hotter the environment is going to be, and as a result, the more it's going to shorten the life of the equipment.</p>
+      <p class="city-intro">In a well-done full foam system, the foam is sprayed onto the back of the shell and around the plumbing, and on the sides of the tub where there is no equipment, the cavity is filled completely. However, on the side of the hot tub where the equipment is located, after the foam is sprayed there is a reflective blanket placed over it to isolate the equipment from the heat of the hot tub. In addition, that side of the hot tub is vented to allow that section to cool. That means lower ambient temperatures and longer-lasting equipment.</p>
+      <p class="guide-takeaway"><strong>On the showroom floor:</strong> get the salesperson to pull a side off the hot tub and check the insulation system. If you see perimeter insulation or reflective mylar blankets with no foam, or if you do see foam and feel it and it's hard, then it's time to take a look at something else.</p>
+    </div>
+  </section>
+
+  <!-- Local CTA -->
+  <section class="block alt">
+    <div class="container">
+      <div class="quote-callout">
+        <div>
+          <div class="section-eyebrow" style="color: var(--sky);">Put us to the test</div>
+          <h2>Come check for yourself.</h2>
+          <p>We'd love nothing more than for you to walk into our Bedford showroom and ask us to pull a side panel off any tub on the floor. Check the shell, the clamps, the jets, and the insulation with your own eyes — that's exactly how we'd want you to shop. Bring this guide with you.</p>
+        </div>
+        <div class="quote-callout-actions">
+          <a href="/contact/" class="btn btn-primary">Book a Showroom Visit</a>
+          <a href="/hot-tubs/" class="btn btn-outline">Browse Our Hot Tubs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

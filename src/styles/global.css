@@ -1517,6 +1517,60 @@ footer.site-footer { background: var(--ink); color: #C8D2DE; padding: 80px 0 32p
   .hub-hero { padding: 56px 0 64px; }
 }
 
+/* Legal pages — privacy / terms / accessibility */
+.legal-prose h2 {
+  font-size: clamp(22px, 2.6vw, 28px);
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+.legal-prose p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--on-dark-body);
+  margin-bottom: 16px;
+}
+.legal-prose a { color: var(--orange); font-weight: 600; }
+.legal-prose a:hover { text-decoration: underline; }
+
+/* Buying Guide — criteria list + takeaways */
+.criteria-list { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: none; }
+.criteria-list li { margin: 0; }
+.criteria-list a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--ink-3);
+  border: 1px solid var(--on-dark-border);
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.criteria-list a:hover { border-color: var(--orange); transform: translateX(3px); }
+.criteria-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: var(--orange);
+  color: #fff;
+  border-radius: 50%;
+  font-family: var(--display);
+  font-size: 16px;
+}
+.guide-takeaway {
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: rgba(237, 128, 0, 0.10);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 10px 10px 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--on-dark-body);
+}
+.guide-takeaway strong { color: #fff; }
+
 /* Areas We Serve — province coverage cards */
 .region-grid {
   display: grid;

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+const lastUpdated = 'May 21, 2026';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Accessibility', item: `${siteOrigin}/accessibility/` },
+  ],
+};
+---
+<BaseLayout
+  title="Accessibility Statement | Hot Tub Universe"
+  description="Hot Tub Universe is committed to making our website usable for everyone. Learn about our accessibility efforts and how to reach us if you encounter a barrier."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">Accessibility</li>
+      </ol>
+    </div>
+  </nav>
+
+  <section class="city-hero">
+    <div class="container">
+      <div class="city-hero-inner">
+        <div class="section-eyebrow">Our commitment</div>
+        <h1>Accessibility Statement</h1>
+        <p class="city-hero-tagline">Last updated: {lastUpdated}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container city-prose legal-prose">
+      <p class="city-intro">Hot Tub Universe is committed to making our website accessible to as many people as possible, including people with disabilities. We want everyone to be able to find information about our hot tubs, swim spas, and services and to get in touch with us easily.</p>
+
+      <h2>What we're doing</h2>
+      <p>We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at the AA level as a practical standard for our site. In building this site we've worked to use clear text and headings, sufficient colour contrast, descriptive link text, alternative text for meaningful images, keyboard-navigable menus and controls, and a layout that adapts to phones, tablets, and desktops.</p>
+
+      <h2>Ongoing effort</h2>
+      <p>Accessibility is an ongoing effort rather than a one-time fix. As we add and update content, we continue to review and improve the experience. Some older content or third-party components embedded on the site (such as maps or our separate online shop) may not yet fully meet our target, and we're working to address those over time.</p>
+
+      <h2>Need help, or hit a barrier?</h2>
+      <p>If you have trouble accessing any part of this site, or you'd like information in a different format, we're glad to help directly. Call us at <a href="tel:9025765115">902-576-5115</a>, reach out through our <a href="/contact/">contact page</a>, or visit us at 20 Duke Street, Unit 109, Bedford, NS. We'll do our best to provide the information you need and to fix the issue you encountered.</p>
+
+      <h2>Feedback</h2>
+      <p>We welcome your feedback on the accessibility of our website. Your comments help us improve for everyone, and we take them seriously.</p>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
