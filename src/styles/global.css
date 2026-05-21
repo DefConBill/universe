@@ -84,11 +84,12 @@ header.site-header {
 .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 32px; }
 .logo { display: block; height: 84px; }
 .logo img { height: 100%; width: auto; }
-nav.main-nav { display: flex; gap: 32px; flex: 1; justify-content: center; }
+nav.main-nav { display: flex; gap: 28px; flex: 1; justify-content: center; flex-wrap: nowrap; }
 nav.main-nav a {
   font-weight: 500;
   color: var(--on-dark-body);
   font-size: 15px;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 nav.main-nav a:hover { color: var(--orange); }
