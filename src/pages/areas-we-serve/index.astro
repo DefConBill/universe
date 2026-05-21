@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { cities } from '../../data/cities';
+import { cities, regions } from '../../data/cities';
 
 const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
 
@@ -16,8 +16,8 @@ const breadcrumbJsonLd = {
 };
 ---
 <BaseLayout
-  title="Areas We Serve — Halifax, Bedford, Dartmouth, Sackville & HRM | Hot Tub Universe"
-  description="Hot Tub Universe delivers, installs, and services hot tubs and swim spas across Halifax Regional Municipality. Click your area for delivery details, drive time, and local FAQs."
+  title="Areas We Serve — Nova Scotia, New Brunswick, PEI & Newfoundland | Hot Tub Universe"
+  description="From our Bedford showroom, Hot Tub Universe delivers hot tubs and swim spas across Atlantic Canada — all of Nova Scotia, New Brunswick, PEI, and parts of Newfoundland. Full installation and service across HRM."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
@@ -41,10 +41,11 @@ const breadcrumbJsonLd = {
     <div class="container">
       <div class="hub-hero-inner">
         <div class="section-eyebrow">Where we deliver &amp; service</div>
-        <h1>Serving every corner of HRM.</h1>
+        <h1>Serving Atlantic Canada, from our Bedford showroom.</h1>
         <p class="hub-hero-sub">
-          From Bedford to Eastern Passage, we deliver, install, and service hot tubs and swim spas across Halifax Regional Municipality.
-          Pick your area below for drive time, delivery details, and answers to local questions.
+          We deliver hot tubs and swim spas across all of Nova Scotia, New Brunswick, Prince Edward Island, and parts of Newfoundland.
+          Full installation and on-the-ground service is centred on Halifax Regional Municipality, with delivery and service
+          to the wider region by arrangement. Wherever you are in the Maritimes, get in touch and we'll sort out the details.
         </p>
         <div class="hero-ctas" style="justify-content: center;">
           <a href="/contact/" class="btn btn-primary">
@@ -60,13 +61,13 @@ const breadcrumbJsonLd = {
     </div>
   </section>
 
-  <!-- All cities -->
+  <!-- HRM cities (full local pages) -->
   <section class="block cream">
     <div class="container">
       <div class="section-head">
-        <div class="section-eyebrow">Pick your city</div>
-        <h2>Every area we serve.</h2>
-        <p>Each city page covers drive time from the showroom, delivery details, what to expect for service response, and city-specific FAQs.</p>
+        <div class="section-eyebrow">Our home region — Halifax &amp; HRM</div>
+        <h2>Where we're on the road every day.</h2>
+        <p>Across Halifax Regional Municipality we deliver, install, and service in person — usually same week. Pick your city for drive time from the showroom, delivery details, service response, and local FAQs.</p>
       </div>
       <div class="areas-grid">
         {cities.map((c) => (
@@ -84,12 +85,41 @@ const breadcrumbJsonLd = {
     </div>
   </section>
 
-  <!-- Don't see your area? -->
+  <!-- Wider Atlantic Canada coverage -->
   <section class="block">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">Beyond HRM</div>
+        <h2>Across the Maritimes &amp; Newfoundland.</h2>
+        <p>We deliver to communities throughout the region. On-site service is arranged for areas outside HRM — tell us where you are and we'll confirm delivery and service options for your spot.</p>
+      </div>
+      <div class="region-grid">
+        {regions.map((r) => (
+          <div class="region-card">
+            <div class="region-head">
+              <h3>{r.province}</h3>
+              <span class="region-tag">{r.provinceShort}</span>
+            </div>
+            <ul class="region-cities">
+              {r.cities.map((city) => (
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span>{city}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Don't see your area? -->
+  <section class="block alt">
     <div class="container city-prose" style="text-align: center;">
       <div class="section-eyebrow">Don't see your area listed?</div>
-      <h2>We probably still deliver there.</h2>
-      <p>HRM is a big region. We routinely deliver to Hammonds Plains, Tantallon, Fall River, Beaver Bank, Timberlea, Spryfield, Herring Cove, and beyond — the listed cities are just the ones most of our customers come from. Tell us where you live and we'll confirm delivery details and quote accordingly.</p>
+      <h2>We very likely still deliver there.</h2>
+      <p>The cities above are the ones our customers ask about most, but they're not the whole map. From the South Shore and the Valley to Cape Breton, across New Brunswick and PEI, and over to Newfoundland — if you're in Atlantic Canada, tell us where you live and we'll confirm delivery and service options and quote accordingly.</p>
       <div class="hero-ctas" style="justify-content: center; margin-top: 24px;">
         <a href="/contact/" class="btn btn-primary">
           Tell us where you live

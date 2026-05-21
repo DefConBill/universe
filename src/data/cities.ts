@@ -49,7 +49,7 @@ export const cities: City[] = [
       {
         title: 'Walk in any time during showroom hours',
         description:
-          "No appointment needed. Browse, sit in a few tubs, ask questions, and leave without anyone pressuring you. Mon–Sat, 10am to 5pm.",
+          "No appointment needed. Browse, sit in a few tubs, ask questions, and leave without anyone pressuring you. Mon–Fri 10am to 5pm, Sat 10am to 4pm.",
       },
       {
         title: 'Same-day site assessments',
@@ -73,7 +73,7 @@ export const cities: City[] = [
     faqs: [
       {
         q: "Can I just walk into your Bedford showroom?",
-        a: "Yes — Mon through Sat, 10am to 5pm. We're at 20 Duke Street, Unit 109. No appointment needed. Browse, ask questions, and we'll show you whatever you'd like to see.",
+        a: "Yes — Mon through Fri 10am to 5pm, and Sat 10am to 4pm. We're at 20 Duke Street, Unit 109. No appointment needed. Browse, ask questions, and we'll show you whatever you'd like to see.",
       },
       {
         q: "How quickly can you do a site assessment in Bedford?",
@@ -383,6 +383,44 @@ export const cities: City[] = [
         a: "Typically 3–4 days. We batch east-coast service trips for efficiency.",
       },
     ],
+  },
+];
+
+/**
+ * Wider Atlantic Canada coverage beyond HRM.
+ *
+ * The Bedford showroom is home base and the HRM `cities` above get full,
+ * proximity-driven detail pages. The regions below are areas we deliver to
+ * across the Maritimes and Newfoundland — grouped by province rather than
+ * given individual pages (which would be thin doorway pages, since the
+ * "drive time / walk in / same-day assessment" angle doesn't apply at range).
+ */
+export type ServedRegion = {
+  province: string;       // Full province name
+  provinceShort: string;  // Abbreviation
+  cities: string[];       // Notable cities/areas we deliver to
+};
+
+export const regions: ServedRegion[] = [
+  {
+    province: 'Nova Scotia',
+    provinceShort: 'NS',
+    cities: ['Yarmouth', 'Kentville', 'New Minas', 'Digby', 'Antigonish', 'Cape Breton'],
+  },
+  {
+    province: 'New Brunswick',
+    provinceShort: 'NB',
+    cities: ['Moncton', 'Fredericton', 'Saint John'],
+  },
+  {
+    province: 'Prince Edward Island',
+    provinceShort: 'PEI',
+    cities: ['Charlottetown', 'Summerside'],
+  },
+  {
+    province: 'Newfoundland & Labrador',
+    provinceShort: 'NL',
+    cities: ["St. John's"],
   },
 ];
 
