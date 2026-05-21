@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const siteOrigin = Astro.site?.origin ?? 'https://hottubuniverse.ca';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteOrigin}/` },
+    { '@type': 'ListItem', position: 2, name: 'About', item: `${siteOrigin}/about/` },
+  ],
+};
+
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Hot Tub Universe',
+  description:
+    'Hot Tub Universe is a locally owned, full-service hot tub and swim spa dealer in Bedford, Nova Scotia, serving Halifax Regional Municipality.',
+  mainEntity: {
+    '@type': 'HotTubStore',
+    name: 'Hot Tub Universe',
+    telephone: '+1-902-576-5115',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '20 Duke Street, Unit 109',
+      addressLocality: 'Bedford',
+      addressRegion: 'NS',
+      postalCode: 'B4A 2Z5',
+      addressCountry: 'CA',
+    },
+  },
+};
+---
+<BaseLayout
+  title="About Hot Tub Universe | Locally Owned in Bedford, NS"
+  description="Hot Tub Universe is a locally owned, full-service hot tub and swim spa dealer in Bedford, NS. Meet owner Theresa and the team that helps Halifax families build the perfect backyard retreat."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(aboutJsonLd)} />
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">About</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="model-hero">
+    <div class="container">
+      <div class="model-hero-inner">
+        <div class="model-hero-content">
+          <div class="model-hero-brand">Our Story</div>
+          <h1>Locally owned, and built around our customers.</h1>
+          <p class="model-hero-desc">Hot Tub Universe is a full-service hot tub and swim spa dealer based in Bedford, Nova Scotia, serving families across Halifax Regional Municipality. We're not a national chain — we're a local team that takes the time to get it right, from your first question to delivery and the years of support that follow.</p>
+          <div class="hero-ctas" style="margin-top: 32px;">
+            <a href="/contact/" class="btn btn-primary">
+              Get in Touch
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="tel:9025765115" class="btn btn-outline">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              902-576-5115
+            </a>
+          </div>
+        </div>
+        <div class="model-hero-image">
+          <img src="/images/hero.jpg" alt="A Hot Tub Universe backyard hot tub — locally owned and operated in Bedford, Nova Scotia" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Owner's letter -->
+  <section class="block alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">A note from the owner</div>
+        <h2>From Theresa.</h2>
+      </div>
+      <div class="city-prose owner-letter">
+        <p>After proudly working with Hot Tub Universe for over six years, I was presented with the incredible opportunity to purchase the company and continue building on the strong foundation that had already been created. With passion, dedication, and a deep understanding of the business and our customers, I have built an amazing team that shares the same commitment to quality, service, and customer care. Together, we strive every day to create a welcoming experience where our customers feel heard, valued, and supported as they create their perfect backyard retreat.</p>
+        <p>At Hot Tub Universe, we believe great customer service starts with genuinely caring. We take the time to listen to our customers, understand their needs, and help them find the perfect hot tub or wellness solution for their lifestyle and budget. From the first conversation to delivery and ongoing support, our team is committed to creating a smooth, honest, and enjoyable experience. We are passionate about helping families relax, reconnect, and enjoy the comfort of their own backyard.</p>
+        <p class="owner-signature">Theresa</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we stand for -->
+  <section class="block">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow">What we stand for</div>
+        <h2>Great service starts with genuinely caring.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3>We genuinely care</h3>
+          <p>You feel heard, valued, and supported — not pressured. Our team treats every backyard like it's our own.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>We listen first</h3>
+          <p>We take the time to understand your needs, then help you find the right hot tub or wellness solution for your lifestyle and budget.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+          <h3>Honest, start to finish</h3>
+          <p>From the first conversation to delivery and ongoing support, we keep things smooth, honest, and enjoyable.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+          <h3>Local, and here to stay</h3>
+          <p>We're based in Bedford and on the road across HRM. When you call, you reach the people who do the work — and who'll be here for the long run.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit / CTA -->
+  <section class="block alt">
+    <div class="container">
+      <div class="quote-callout">
+        <div>
+          <div class="section-eyebrow" style="color: var(--sky);">Come say hello</div>
+          <h2>Visit our Bedford showroom.</h2>
+          <p>Stop by to see hot tubs and swim spas in person, or reach out and we'll help you find the perfect fit. We're at 20 Duke Street, Unit 109 in Bedford, open Monday–Saturday, 10am–5pm.</p>
+        </div>
+        <div class="quote-callout-actions">
+          <a href="/contact/" class="btn btn-primary">Contact Us</a>
+          <a href="tel:9025765115" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            902-576-5115
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
