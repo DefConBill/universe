@@ -25,6 +25,7 @@
     <nav class="main-nav">
       <a href="/hot-tubs/">Hot Tubs</a>
       <a href="/swim-spas/">Swim Spas</a>
+      <a href="/buying-guide/">Buying Guide</a>
       <a href="/service/">Service</a>
       <a href="/areas-we-serve/">Areas We Serve</a>
       <a href="/about/">About</a>
@@ -34,5 +35,63 @@
       <a href="https://hottubuniverse.myshopify.com/" rel="noopener" target="_blank" class="header-cta">Visit Our Store</a>
       <a href="/contact/" class="header-cta">Request a Quote</a>
     </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg class="nav-toggle-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="nav-toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav panel -->
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <nav class="mobile-nav-links" aria-label="Mobile">
+      <a href="/hot-tubs/">Hot Tubs</a>
+      <a href="/swim-spas/">Swim Spas</a>
+      <a href="/buying-guide/">Buying Guide</a>
+      <a href="/service/">Service</a>
+      <a href="/areas-we-serve/">Areas We Serve</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <div class="mobile-nav-actions">
+      <a href="https://hottubuniverse.myshopify.com/" rel="noopener" target="_blank" class="header-cta">Visit Our Store</a>
+      <a href="/contact/" class="header-cta">Request a Quote</a>
+    </div>
   </div>
 </header>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var panel = document.getElementById('mobileNav');
+    if (!toggle || !panel) return;
+
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      toggle.classList.toggle('is-open', open);
+      if (open) {
+        panel.hidden = false;
+        requestAnimationFrame(function () { panel.classList.add('is-open'); });
+      } else {
+        panel.classList.remove('is-open');
+        window.setTimeout(function () { if (toggle.getAttribute('aria-expanded') === 'false') panel.hidden = true; }, 250);
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 1024 && toggle.getAttribute('aria-expanded') === 'true') setOpen(false);
+    });
+  })();
+</script>
